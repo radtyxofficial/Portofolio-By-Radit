@@ -692,7 +692,7 @@
     </section>
 
 
-    <!-- CONTACTS SECTION -->
+    <!-- CONTACTS SECTION (SEJAJAR SECARA VERTICAL DENGAN CARD TERAKHIR) -->
     <section id="contacts" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div class="fade-in-section space-y-12">
             
@@ -708,9 +708,11 @@
                 </p>
             </div>
 
+            <!-- GRID DIBUAT DENGAN ALIGN-ITEMS START DAN KEDUANYA BERUKURAN COL-SPAN-6 AGAR SEJAJAR PERSIS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                <div class="lg:col-span-5 space-y-4">
+                <!-- KOLOM KIRI: DAFTAR CARD KONTAK (WHATSAPP, EMAIL, YOUTUBE, LINKEDIN, INSTAGRAM) -->
+                <div class="lg:col-span-6 space-y-4">
                     <h3 class="heading-font text-lg font-bold text-slate-900 dark:text-slate-100">
                         Kontak Langsung
                     </h3>
@@ -737,7 +739,6 @@
                         </div>
                     </a>
 
-                    <!-- YOUTUBE CONTACT LINK -->
                     <a href="https://youtube.com/@portfolioadit?si=lm-1BtdFbUILbyzx" target="_blank" rel="noopener noreferrer"
                        class="p-4 rounded-2xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 hover:border-red-400 dark:hover:border-red-500 card-glow flex items-center gap-4 transition-all group shadow-sm">
                         <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950 border border-red-200 dark:border-red-500/50 flex items-center justify-center text-red-600 dark:text-red-400 text-xl group-hover:scale-110 transition-transform">
@@ -772,7 +773,8 @@
                     </a>
                 </div>
 
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-lg dark:shadow-2xl space-y-4 transition-colors">
+                <!-- KOLOM KANAN: FORM KIRIM PESAN WHATSAPP (COL-SPAN-6 AGAR TINGGI & POSISINYA SEJAJAR DENGAN CARD INSTAGRAM DI KIRI) -->
+                <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-lg dark:shadow-2xl space-y-4 transition-colors">
                     <h3 class="heading-font text-lg font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-paper-plane text-rose-500"></i>
                         <span>Kirim Pesan / Ajakan Kolaborasi</span>
