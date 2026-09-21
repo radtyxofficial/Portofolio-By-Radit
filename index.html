@@ -1,1242 +1,398 @@
 <!DOCTYPE html>
-<html lang="id" class="dark scroll-smooth">
+<html lang="id" class="scroll-smooth dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditiya Ramadhani | Film Director & Creative ScriptWriter</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        darkBg: '#080a0f',
-                        darkCard: 'rgba(15, 20, 30, 0.85)',
-                        crimsonDark: '#500b14',
-                        crimsonAccent: '#9f1239',
-                        navyDark: '#0a0f1d',
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        heading: ['Space Grotesk', 'sans-serif'],
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M Aditiya Ramadhani - Portfolio Sinematik</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#E50914',
+              gold: '#D4AF37',
+              dark: '#0f0f0f',
+              card: '#181818'
             }
+          }
         }
-    </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            transition: background-color 0.4s ease, color 0.4s ease;
-        }
-
-        .heading-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-
-        /* Subtle Grid Pattern Background */
-        .bg-grid-pattern {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-        }
-
-        .light .bg-grid-pattern {
-            background-image: 
-                linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-        }
-
-        /* Glow Ambient Background */
-        .glow-overlay {
-            background: radial-gradient(circle at 20% 20%, rgba(80, 11, 20, 0.4) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(10, 15, 29, 0.7) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 100%, rgba(159, 18, 57, 0.2) 0%, transparent 60%);
-        }
-
-        /* Card Glow Hover Effect */
-        .card-glow {
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .card-glow:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 14px 32px -5px rgba(159, 18, 57, 0.45), 0 0 18px rgba(30, 58, 138, 0.35);
-            border-color: rgba(225, 29, 72, 0.65);
-        }
-
-        /* Fade-in Scroll Animations */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* LANYARD STRAP & ELASTIC RUBBER PHYSICS */
-        .lanyard-strap-vertical {
-            width: 20px;
-            background: linear-gradient(180deg, #111116 0%, #1a1a24 50%, #0d0d12 100%);
-            border-left: 1px solid rgba(255,255,255,0.12);
-            border-right: 1px solid rgba(0,0,0,0.6);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.85);
-            transform-origin: top center;
-        }
-
-        .id-card-frame {
-            background: #ffffff;
-            border-radius: 18px;
-            padding: 8px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.25);
-            transform-style: preserve-3d;
-            cursor: grab;
-            touch-action: none;
-        }
-        .id-card-frame:active {
-            cursor: grabbing;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #080a0f;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #9f1239;
-            border-radius: 4px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .lanyard-card {
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out, background-color 0.3s, color 0.3s;
+    }
+    .perspective-1000 {
+      perspective: 1000px;
+    }
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+    }
+  </style>
 </head>
-<body class="bg-darkBg text-slate-200 dark:bg-darkBg dark:text-slate-200 light:bg-slate-50 light:text-slate-900 relative min-h-screen overflow-x-hidden bg-grid-pattern transition-colors duration-300">
+<body class="bg-slate-50 dark:bg-brand-dark text-slate-800 dark:text-slate-100 transition-colors duration-300 min-h-screen flex flex-col font-sans">
 
-    <!-- INTRO OPENING ANIMATION OVERLAY -->
-    <div id="introOverlay" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center text-center p-6 transition-opacity duration-1000 ease-out">
-        <div id="introStep1" class="space-y-4 opacity-0 transition-all duration-700 transform translate-y-4">
-            <span class="text-rose-500 text-xs sm:text-sm font-bold uppercase tracking-[0.3em]">Cinematic Portfolio</span>
-            <h1 class="heading-font text-3xl sm:text-5xl font-extrabold text-white tracking-widest">
-                WELCOME TO
-            </h1>
-        </div>
-        
-        <div id="introStep2" class="space-y-3 opacity-0 transition-all duration-700 transform translate-y-4 hidden mt-6">
-            <h2 class="heading-font text-2xl sm:text-4xl lg:text-5xl font-black bg-gradient-to-r from-rose-500 via-rose-300 to-indigo-400 bg-clip-text text-transparent px-4">
-                CREATIVE PORTFOLIO
-            </h2>
-            <p class="text-slate-400 text-xs sm:text-sm tracking-widest uppercase font-semibold">
-                BY ADITIYA RAMADHANI
-            </p>
-        </div>
-
-        <button id="skipIntroBtn" onclick="finishIntro()" class="absolute bottom-10 px-5 py-2 rounded-full border border-slate-700 hover:border-rose-500 text-xs font-bold text-slate-400 hover:text-white transition backdrop-blur-md bg-slate-900/50">
-            SKIP INTRO <i class="fa-solid fa-forward text-[10px] ml-1"></i>
+  <!-- NAVBAR -->
+  <nav class="sticky top-0 z-40 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <span class="font-bold text-xl tracking-wider text-brand-red">M. ADITIYA RAMADHANI</span>
+      <div class="flex items-center gap-4">
+        <button id="themeToggle" class="p-2 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition" title="Toggle Mode Terang/Gelap">
+          <i id="themeIcon" class="fas fa-sun text-yellow-500"></i>
         </button>
+      </div>
     </div>
+  </nav>
 
-    <!-- Ambient Background Glow Overlay -->
-    <div class="fixed inset-0 glow-overlay pointer-events-none z-0"></div>
-
-    <!-- NAVIGATION HEADER -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-darkBg/80 dark:bg-darkBg/80 light:bg-white/80 border-b border-slate-800/80 light:border-slate-200 transition-colors duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            
-            <a href="#home" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-700 via-rose-900 to-indigo-950 flex items-center justify-center font-bold text-white shadow-lg group-hover:scale-105 transition-transform">
-                    <i class="fa-solid fa-film text-rose-300 text-lg"></i>
-                </div>
-                <div>
-                    <span class="heading-font font-bold text-base sm:text-lg tracking-wider block text-slate-100 dark:text-slate-100 light:text-slate-900 group-hover:text-rose-500 transition-colors">
-                        ADITIYA RAMADHANI
-                    </span>
-                    <span class="text-[11px] text-rose-400 dark:text-rose-400 light:text-rose-600 font-semibold tracking-widest block">
-                        RA.DTYX OFFICIAL
-                    </span>
-                </div>
-            </a>
-
-            <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 bg-slate-900/70 dark:bg-slate-900/70 light:bg-slate-200/80 p-1.5 rounded-full border border-slate-800/80 light:border-slate-300">
-                <a href="#home" class="nav-link px-5 py-2 rounded-full text-xs font-semibold transition-all hover:text-rose-400 text-rose-500">Home</a>
-                <a href="#about" class="nav-link px-5 py-2 rounded-full text-xs font-semibold transition-all text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-rose-400">About</a>
-                <a href="#portfolio" class="nav-link px-5 py-2 rounded-full text-xs font-semibold transition-all text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-rose-400">Portfolio</a>
-                <a href="#contacts" class="nav-link px-5 py-2 rounded-full text-xs font-semibold transition-all text-slate-300 dark:text-slate-300 light:text-slate-700 hover:text-rose-400">Contacts</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <button id="themeToggle" aria-label="Toggle Theme" class="p-2.5 rounded-full bg-slate-800/80 dark:bg-slate-800/80 light:bg-slate-200 border border-slate-700 light:border-slate-300 text-amber-300 dark:text-amber-300 light:text-slate-800 hover:scale-110 transition-all">
-                    <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
-                </button>
-
-                <button id="mobileMenuBtn" aria-label="Toggle Mobile Menu" class="md:hidden p-2.5 rounded-xl bg-slate-800/80 text-slate-200 hover:bg-rose-900/50 transition">
-                    <i class="fa-solid fa-bars text-lg"></i>
-                </button>
-            </div>
+  <!-- HERO SECTION / LANYARD ID CARD -->
+  <section class="py-12 px-4 max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+    <!-- ID Card 3D Tilt -->
+    <div class="w-full md:w-1/3 flex justify-center perspective-1000">
+      <div id="lanyardCard" class="lanyard-card relative w-72 bg-gradient-to-b from-white to-slate-100 dark:from-neutral-800 dark:to-neutral-900 text-slate-900 dark:text-white rounded-2xl p-6 shadow-2xl border border-slate-300 dark:border-neutral-700 flex flex-col items-center cursor-pointer">
+        <!-- Lanyard Hole -->
+        <div class="w-12 h-3 bg-slate-300 dark:bg-neutral-950 rounded-full mb-6 border border-slate-400 dark:border-neutral-700"></div>
+        <!-- Badge Profile Initials -->
+        <div class="w-28 h-28 rounded-full bg-brand-red flex items-center justify-center text-4xl font-bold text-white mb-4 border-4 border-slate-100 dark:border-neutral-800 shadow-inner">
+          MAR
         </div>
-
-        <div id="mobileMenu" class="hidden md:hidden bg-slate-950/95 border-b border-slate-800 px-6 py-4 space-y-3 backdrop-blur-xl">
-            <a href="#home" class="mobile-nav-link block py-2 text-rose-400 font-semibold border-b border-slate-800/50">Home</a>
-            <a href="#about" class="mobile-nav-link block py-2 text-slate-300 hover:text-rose-400 font-semibold border-b border-slate-800/50">About</a>
-            <a href="#portfolio" class="mobile-nav-link block py-2 text-slate-300 hover:text-rose-400 font-semibold border-b border-slate-800/50">Portfolio</a>
-            <a href="#contacts" class="mobile-nav-link block py-2 text-slate-300 hover:text-rose-400 font-semibold">Contacts</a>
-        </div>
-    </header>
-
-
-    <!-- HERO SECTION WITH ELASTIC RUBBER LANYARD -->
-    <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center">
+        <h2 class="text-xl font-bold text-center">M. Aditiya Ramadhani</h2>
+        <p class="text-amber-600 dark:text-brand-gold text-sm font-bold mb-4">Producer & Art Director</p>
         
-        <!-- INTERACTIVE ELASTIC VERTICAL LANYARD HANGING FROM TOP HEADER -->
-        <div id="lanyardContainer" class="hidden lg:flex flex-col items-center absolute top-0 right-[10%] z-30 pointer-events-auto cursor-grab active:cursor-grabbing">
-            
-            <!-- Clean Vertical Rubber Lanyard Strap (No Text) -->
-            <div id="lanyardStrap" class="lanyard-strap-vertical transition-all duration-75" style="height: 180px;"></div>
-
-            <!-- Metal Clip -->
-            <div id="lanyardHardware" class="w-7 h-9 rounded-sm bg-gradient-to-b from-slate-300 via-slate-600 to-slate-900 border border-slate-400 shadow-md flex flex-col items-center justify-between py-1 -mt-0.5 z-10">
-                <div class="w-4 h-1 bg-slate-900 rounded-full"></div>
-                <div class="w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-950"></div>
-            </div>
-
-            <!-- 3D Hanging ID Card Frame -->
-            <div id="idCard3D" class="id-card-frame w-64 -mt-1 shadow-2xl relative select-none">
-                
-                <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden">
-                    
-                    <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
-
-                    <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900 border border-slate-800 relative group">
-                        <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
-                             alt="Aditiya Ramadhani ID Photo" 
-                             onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
-                             class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                    </div>
-
-                    <div class="space-y-1 w-full pt-1 text-left">
-                        <h3 class="heading-font font-bold text-sm text-slate-100 tracking-wider">
-                            Aditiya Ramadhani
-                        </h3>
-                        <p class="text-[10px] text-rose-400 font-semibold">
-                            D4 Produksi Film & Televisi
-                        </p>
-                        <p class="text-[9px] text-slate-400 font-medium">
-                            Institut Seni Indonesia Bali
-                        </p>
-                    </div>
-
-                    <div class="w-full pt-2 border-t border-slate-800 flex justify-between items-center text-[8px] text-slate-500 font-mono tracking-widest">
-                        <span>CREW PASS</span>
-                        <span>ISI-BALI-2026</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Interaction Hint -->
-            <p class="text-[10px] text-slate-400 font-mono mt-3 flex items-center gap-1.5 animate-bounce bg-slate-900/80 px-3 py-1 rounded-full border border-slate-800">
-                <i class="fa-solid fa-hand-pointer text-rose-500"></i> Tarik lanyard ke bawah & lepaskan
-            </p>
+        <div class="w-full border-t border-slate-300 dark:border-neutral-700 pt-4 text-xs space-y-2 text-slate-600 dark:text-neutral-300">
+          <p><i class="fas fa-film text-brand-red w-5"></i> Filmmaker & Content Creator</p>
+          <p><i class="fas fa-map-marker-alt text-brand-red w-5"></i> Indonesia</p>
         </div>
 
-
-        <!-- Hero Content Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
-            
-            <div class="lg:col-span-8 space-y-6 fade-in-section">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-950/60 border border-rose-800/50 text-rose-300 text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
-                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-                    ISI Bali Student & Film Director
-                </div>
-
-                <h1 class="heading-font text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-100 dark:text-slate-100 light:text-slate-900 leading-tight tracking-tight">
-                    Film Director & <br>
-                    <span class="bg-gradient-to-r from-rose-500 via-rose-400 to-indigo-400 bg-clip-text text-transparent">
-                        Creative ScriptWriter
-                    </span>
-                </h1>
-
-                <p class="text-sm sm:text-base lg:text-lg text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed font-normal max-w-2xl">
-                    Menjadi seorang Film Director dan Creative Script Writer bukan hanya tentang menulis atau membuat sebuah cerita, tetapi juga tentang bagaimana menyampaikan gagasan dan perasaan melalui bahasa visual. Cerita yang sering saya angkat berangkat dari hal-hal yang dekat dengan saya, mulai dari kehidupan sehari-hari hingga berbagai persoalan yang saya temui. Saya percaya bahwa cerita yang lahir dari sesuatu yang dekat akan lebih mudah memiliki keterhubungan dengan penonton. Melalui film, saya ingin mengubah hal-hal sederhana di sekitar saya menjadi sebuah cerita yang memiliki makna dan meninggalkan kesan.
-                </p>
-
-                <div class="pt-2 flex flex-wrap items-center gap-4">
-                    <a href="https://drive.google.com/file/d/1W_fb3GsNORpPcSwgZ-2g-R_yXVAwC3EE/view?usp=drivesdk" 
-                       target="_blank" rel="noopener noreferrer"
-                       class="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl bg-gradient-to-r from-rose-700 via-rose-800 to-indigo-900 text-white font-bold text-sm shadow-lg shadow-rose-900/40 hover:shadow-rose-600/50 hover:scale-105 transition-all group">
-                        <i class="fa-solid fa-file-pdf text-rose-200 group-hover:rotate-12 transition-transform"></i>
-                        <span>Download Treatment / CV</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs opacity-70 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-
-                    <a href="#featured-reel" 
-                       class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900/80 dark:bg-slate-900/80 light:bg-slate-200 text-slate-200 dark:text-slate-200 light:text-slate-800 font-bold text-sm border border-slate-700 light:border-slate-300 hover:border-rose-500 transition-all hover:bg-slate-800">
-                        <i class="fa-solid fa-circle-play text-rose-500"></i>
-                        <span>Tonton Trailer Terbaru</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Mobile View Fallback -->
-            <div class="lg:hidden col-span-1 flex flex-col items-center justify-center pt-6">
-                <div class="id-card-frame w-64 bg-white p-2 rounded-2xl shadow-2xl">
-                    <div class="bg-black rounded-xl p-4 border border-slate-800 text-white flex flex-col items-center text-center space-y-3">
-                        <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900">
-                            <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
-                                 alt="Aditiya Ramadhani ID Photo" 
-                                 class="w-full h-full object-cover filter grayscale contrast-125" />
-                        </div>
-                        <div class="text-left w-full space-y-1">
-                            <h3 class="font-bold text-sm text-white">Aditiya Ramadhani</h3>
-                            <p class="text-xs text-rose-400">D4 Produksi Film & Televisi</p>
-                            <p class="text-[10px] text-slate-400">Institut Seni Indonesia Bali</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <!-- Social Links -->
+        <div class="flex gap-4 mt-6 pt-4 border-t border-slate-300 dark:border-neutral-700 w-full justify-center text-lg text-slate-700 dark:text-slate-300">
+          <a href="https://wa.me/" target="_blank" class="hover:text-brand-red dark:hover:text-brand-red transition" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://instagram.com/" target="_blank" class="hover:text-brand-red dark:hover:text-brand-red transition" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com/" target="_blank" class="hover:text-brand-red dark:hover:text-brand-red transition" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="mailto:ra.dtyxofficial@gmail.com" class="hover:text-brand-red dark:hover:text-brand-red transition" title="Email"><i class="fas fa-envelope"></i></a>
         </div>
-    </section>
-
-
-    <!-- FEATURED REEL / LATEST WORK TRAILER -->
-    <section id="featured-reel" class="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="fade-in-section p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-slate-950 via-rose-950/40 to-slate-950 border border-rose-900/50 shadow-2xl space-y-6">
-            
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-                <div>
-                    <span class="px-3 py-1 rounded-full bg-rose-900/60 text-rose-300 text-[10px] font-bold uppercase tracking-widest border border-rose-700">
-                        Featured Highlight • 2026
-                    </span>
-                    <h3 class="heading-font text-2xl sm:text-3xl font-extrabold text-white mt-2">
-                        Hari Itu, Kita bertemu lagi
-                    </h3>
-                    <p class="text-xs text-rose-400 font-semibold">Sutradara & Penulis Naskah: Aditiya Ramadhani</p>
-                </div>
-
-                <a href="https://drive.google.com/file/d/1zPrK_nu_E8fWPT8FpHaCQTvh9LJf1O4K/view?usp=drivesdk" 
-                   target="_blank" rel="noopener noreferrer"
-                   class="px-5 py-2.5 rounded-xl bg-rose-700 hover:bg-rose-600 text-white font-bold text-xs whitespace-nowrap shadow-lg flex items-center gap-2 self-start sm:self-auto">
-                    <i class="fa-brands fa-google-drive"></i>
-                    <span>Tonton Trailer di Drive</span>
-                </a>
-            </div>
-
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-inner">
-                <iframe src="https://drive.google.com/file/d/1zPrK_nu_E8fWPT8FpHaCQTvh9LJf1O4K/preview" 
-                        class="w-full h-full border-0" 
-                        allow="autoplay; encrypted-media" 
-                        allowfullscreen>
-                </iframe>
-            </div>
-            
-            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed italic bg-slate-900/80 p-4 rounded-xl border border-slate-800">
-                <strong class="text-rose-400 not-italic">Director's Note:</strong> "Melalui kisah ini, saya ingin menghadirkan pengalaman yang terasa dekat dengan diri saya, tentang sebuah cinta yang tidak selalu berakhir bahagia dan seseorang yang gagal memahami perasaan pada dirinya sendiri."
-            </p>
-        </div>
-    </section>
-
-
-    <!-- ABOUT SECTION -->
-    <section id="about" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="fade-in-section space-y-8">
-            
-            <div class="flex items-center gap-3">
-                <span class="h-px w-10 bg-rose-600"></span>
-                <span class="text-rose-500 font-bold uppercase tracking-widest text-xs">Profil Singkat</span>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                
-                <div class="lg:col-span-5 p-8 rounded-2xl bg-gradient-to-br from-rose-950/50 via-slate-900/80 to-navyDark/70 border border-rose-900/50 shadow-xl relative overflow-hidden backdrop-blur-md">
-                    <i class="fa-solid fa-quote-left text-5xl text-rose-600/20 absolute top-4 left-4"></i>
-                    <blockquote class="relative z-10 text-xl sm:text-2xl font-bold italic text-slate-100 dark:text-slate-100 light:text-slate-900 leading-snug">
-                        "I create stories from the things I see, feel, and experience."
-                    </blockquote>
-                    <div class="mt-6 flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-rose-900/80 border border-rose-500 flex items-center justify-center font-bold text-rose-200">
-                            AR
-                        </div>
-                        <div>
-                            <span class="block text-sm font-bold text-slate-200 dark:text-slate-200 light:text-slate-900">Aditiya Ramadhani</span>
-                            <span class="block text-xs text-rose-400">Filmmaker & Storyteller</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 space-y-4 text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed text-sm sm:text-base">
-                    <p>
-                        Saya merupakan mahasiswa aktif <strong class="text-slate-100 dark:text-slate-100 light:text-slate-900">D4 Produksi Film dan Televisi di Institut Seni Indonesia Bali</strong> yang memiliki ketertarikan besar pada dunia film dan videografi. Selama menjalani perkuliahan, saya aktif terlibat dalam berbagai produksi audiovisual, baik dalam proyek film pendek maupun produksi video lainnya.
-                    </p>
-                    <p>
-                        Dalam beberapa project, saya berkesempatan menjalankan peran sebagai <span class="text-rose-400 font-semibold">Film Director</span>, <span class="text-rose-400 font-semibold">Assistant Director</span>, <span class="text-rose-400 font-semibold">Creative Script Writer</span>, <span class="text-rose-400 font-semibold">Producer</span>, <span class="text-rose-400 font-semibold">Art Department</span>, dan <span class="text-rose-400 font-semibold">Editor</span>.
-                    </p>
-                    <p>
-                        Melalui berbagai pengalaman tersebut, saya terus mengembangkan kemampuan dalam <em class="text-slate-100 dark:text-slate-100 light:text-slate-900 font-medium">directing, visual storytelling, production,</em> dan <em class="text-slate-100 dark:text-slate-100 light:text-slate-900 font-medium">editing</em>, sekaligus belajar bagaimana bekerja secara kreatif, komunikatif, dan kolaboratif dalam sebuah tim produksi.
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- PORTFOLIO SHOWCASE SECTION -->
-    <section id="portfolio" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="fade-in-section space-y-10">
-            
-            <div class="text-center space-y-3 max-w-2xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/50 border border-rose-800/40 text-rose-400 text-xs font-bold tracking-widest uppercase">
-                    Eksplorasi Karya
-                </div>
-                <h2 class="heading-font text-3xl sm:text-4xl font-extrabold text-slate-100 dark:text-slate-100 light:text-slate-900">
-                    PORTFOLIO SHOWCASE
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-400 dark:text-slate-400 light:text-slate-600">
-                    Koleksi karya Film Fiksi, Dokumenter, Iklan Layanan Masyarakat, Naskah, serta Sertifikat Penghargaan.
-                </p>
-            </div>
-
-            <div class="flex justify-center">
-                <div class="inline-flex p-1.5 rounded-2xl bg-slate-900/90 dark:bg-slate-900/90 light:bg-slate-200 border border-slate-800 light:border-slate-300 backdrop-blur-md shadow-xl overflow-x-auto max-w-full">
-                    <button onclick="switchTab('work')" id="tabBtn-work" class="main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-rose-700 to-rose-900 text-white shadow-md">
-                        <i class="fa-solid fa-video"></i>
-                        <span>Work Portfolio</span>
-                    </button>
-                    <button onclick="switchTab('festivals')" id="tabBtn-festivals" class="main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-slate-100">
-                        <i class="fa-solid fa-trophy text-amber-400"></i>
-                        <span>Festivals & Awards</span>
-                    </button>
-                    <button onclick="switchTab('skills')" id="tabBtn-skills" class="main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-slate-100">
-                        <i class="fa-solid fa-laptop-code text-indigo-400"></i>
-                        <span>Skills & Gear</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- TAB 1 -->
-            <div id="tabContent-work" class="tab-panel space-y-8">
-                
-                <div class="flex flex-wrap justify-center gap-2 text-xs">
-                    <button onclick="filterCategory('all')" class="cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-rose-800/80 border-rose-600 text-white" data-cat="all">Semua Karya</button>
-                    <button onclick="filterCategory('Film Fiksi')" class="cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-slate-900/60 border-slate-800 text-slate-300 hover:border-rose-500" data-cat="Film Fiksi">Film Fiksi</button>
-                    <button onclick="filterCategory('Dokumenter')" class="cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-slate-900/60 border-slate-800 text-slate-300 hover:border-rose-500" data-cat="Dokumenter">Dokumenter</button>
-                    <button onclick="filterCategory('Iklan Layanan Masyarakat')" class="cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-slate-900/60 border-slate-800 text-slate-300 hover:border-rose-500" data-cat="Iklan Layanan Masyarakat">Iklan (ILM)</button>
-                    <button onclick="filterCategory('Script')" class="cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-slate-900/60 border-slate-800 text-slate-300 hover:border-rose-500" data-cat="Script">Script / Naskah</button>
-                </div>
-
-                <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-            </div>
-
-            <!-- TAB 2 -->
-            <div id="tabContent-festivals" class="tab-panel hidden space-y-8">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    
-                    <div class="p-6 rounded-2xl bg-darkCard border border-slate-800 hover:border-amber-500/60 card-glow space-y-4 backdrop-blur-md">
-                        <div class="h-48 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                            <img src="https://drive.google.com/thumbnail?id=1IxSqp2TxSRZU-ePVmcDZnYFDlZX7T1H_&sz=w600" 
-                                 alt="Juara 1 Lomba Film Dokumenter Budaya INSTIKI" 
-                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-amber-950 text-amber-300 border border-amber-800">
-                                Juara 1 Nasional
-                            </span>
-                            <h3 class="heading-font text-base font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 mt-2">
-                                Lomba Film Dokumenter Budaya
-                            </h3>
-                            <p class="text-xs text-slate-400 mt-1">Diadakan oleh HIMA DKV KAMPUS INSTIKI</p>
-                        </div>
-                        <a href="https://drive.google.com/file/d/1IxSqp2TxSRZU-ePVmcDZnYFDlZX7T1H_/view?usp=drivesdk" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="w-full py-2 rounded-xl bg-slate-800 hover:bg-amber-600 text-amber-300 hover:text-white font-semibold text-xs text-center block border border-amber-500/30 transition-all">
-                            Lihat Sertifikat Google Drive
-                        </a>
-                    </div>
-
-                    <div class="p-6 rounded-2xl bg-darkCard border border-slate-800 hover:border-rose-500/60 card-glow space-y-4 backdrop-blur-md">
-                        <div class="h-48 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                            <img src="https://drive.google.com/thumbnail?id=1DDiQi_hF6uCH4-EtxqBNZrG0Kb02tNSZ&sz=w600" 
-                                 alt="Juara 3 Lomba ILM OJK Bali" 
-                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-rose-950 text-rose-300 border border-rose-800">
-                                Juara 3
-                            </span>
-                            <h3 class="heading-font text-base font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 mt-2">
-                                Lomba Iklan Layanan Masyarakat
-                            </h3>
-                            <p class="text-xs text-slate-400 mt-1">Diadakan oleh OJK - BALI</p>
-                        </div>
-                        <a href="https://drive.google.com/file/d/1DDiQi_hF6uCH4-EtxqBNZrG0Kb02tNSZ/view?usp=drivesdk" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="w-full py-2 rounded-xl bg-slate-800 hover:bg-rose-600 text-rose-300 hover:text-white font-semibold text-xs text-center block border border-rose-500/30 transition-all">
-                            Lihat Sertifikat Google Drive
-                        </a>
-                    </div>
-
-                    <div class="p-6 rounded-2xl bg-darkCard border border-slate-800 hover:border-indigo-500/60 card-glow space-y-4 backdrop-blur-md">
-                        <div class="h-48 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                            <img src="https://drive.google.com/thumbnail?id=1_ZSHUY46mmDF2VhL2ucPtpPYkIYlfG5N&sz=w600" 
-                                 alt="Juara 2 Lomba Videografi UNAIR" 
-                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 border border-indigo-800">
-                                Juara 2 Nasional
-                            </span>
-                            <h3 class="heading-font text-base font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 mt-2">
-                                Lomba Videografi Tingkat Nasional
-                            </h3>
-                            <p class="text-xs text-slate-400 mt-1">Diadakan oleh Organisasi AUBMO Universitas Airlangga</p>
-                        </div>
-                        <a href="https://drive.google.com/file/d/1_ZSHUY46mmDF2VhL2ucPtpPYkIYlfG5N/view?usp=drivesdk" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="w-full py-2 rounded-xl bg-slate-800 hover:bg-indigo-600 text-indigo-300 hover:text-white font-semibold text-xs text-center block border border-indigo-500/30 transition-all">
-                            Lihat Sertifikat Google Drive
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- TAB 3 -->
-            <div id="tabContent-skills" class="tab-panel hidden space-y-10">
-                
-                <div class="space-y-4">
-                    <h3 class="heading-font text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-star text-rose-500"></i>
-                        <span>Keahlian Spesifik</span>
-                    </h3>
-                    <div class="flex flex-wrap gap-2.5">
-                        <span class="px-4 py-2 rounded-xl bg-rose-950/70 border border-rose-800 text-rose-300 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-bullhorn text-rose-400"></i> Directing
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-rose-950/70 border border-rose-800 text-rose-300 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-pen-fancy text-rose-400"></i> Script Writing
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-briefcase text-indigo-400"></i> Producing
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-clapperboard text-indigo-400"></i> Clapper Loader
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-clipboard-check text-indigo-400"></i> Script Continuity
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-palette text-indigo-400"></i> Art Department
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-scissors text-indigo-400"></i> Offline Editing
-                        </span>
-                        <span class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 font-semibold text-xs flex items-center gap-2">
-                            <i class="fa-solid fa-video text-indigo-400"></i> Camera Operator
-                        </span>
-                    </div>
-                </div>
-
-                <div class="space-y-6">
-                    <h3 class="heading-font text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-laptop-code text-rose-500"></i>
-                        <span>Software Kreatif & Tingkat Kemahiran</span>
-                    </h3>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        
-                        <div class="p-4 rounded-2xl bg-darkCard border border-slate-800 space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-emerald-950 border border-emerald-600 flex items-center justify-center text-emerald-400 font-bold">
-                                        <i class="fa-solid fa-file-signature text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm text-slate-100 dark:text-slate-100 light:text-slate-900">Celtx</h4>
-                                        <span class="text-[11px] text-slate-400">Scriptwriting & Breakdown</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-extrabold text-emerald-400">85%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-full rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-darkCard border border-slate-800 space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-500 flex items-center justify-center text-cyan-300 font-bold">
-                                        <i class="fa-solid fa-paint-brush text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm text-slate-100 dark:text-slate-100 light:text-slate-900">Canva</h4>
-                                        <span class="text-[11px] text-slate-400">Deck & Treatment Presentation</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-extrabold text-cyan-400">90%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-cyan-600 to-cyan-400 h-full rounded-full" style="width: 90%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-darkCard border border-slate-800 space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-blue-950 border border-blue-600 flex items-center justify-center text-blue-400 font-bold">
-                                        <i class="fa-solid fa-file-word text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm text-slate-100 dark:text-slate-100 light:text-slate-900">Microsoft Office</h4>
-                                        <span class="text-[11px] text-slate-400">Word, Excel, PowerPoint</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-extrabold text-blue-400">80%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-blue-600 to-blue-400 h-full rounded-full" style="width: 80%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-darkCard border border-slate-800 space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-rose-950 border border-rose-600 flex items-center justify-center text-rose-400 font-bold">
-                                        <i class="fa-solid fa-scissors text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm text-slate-100 dark:text-slate-100 light:text-slate-900">CapCut</h4>
-                                        <span class="text-[11px] text-slate-400">Rapid Video Assembly</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-extrabold text-rose-400">70%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-rose-600 to-rose-400 h-full rounded-full" style="width: 70%"></div>
-                            </div>
-                        </div>
-
-                        <div class="p-4 rounded-2xl bg-darkCard border border-slate-800 space-y-3 md:col-span-2">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-10 h-10 rounded-lg bg-indigo-950 border border-indigo-600 flex items-center justify-center text-indigo-400 font-bold">
-                                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-bold text-sm text-slate-100 dark:text-slate-100 light:text-slate-900">DaVinci Resolve</h4>
-                                        <span class="text-[11px] text-slate-400">Color Grading & Post-Production</span>
-                                    </div>
-                                </div>
-                                <span class="text-xs font-extrabold text-indigo-400">30%</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                                <div class="bg-gradient-to-r from-indigo-700 to-indigo-500 h-full rounded-full" style="width: 30%"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- CONTACTS SECTION -->
-    <section id="contacts" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
-        <div class="fade-in-section space-y-12">
-            
-            <div class="text-center space-y-3 max-w-2xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/50 border border-rose-800/40 text-rose-400 text-xs font-bold tracking-widest uppercase">
-                    Hubungi Saya
-                </div>
-                <h2 class="heading-font text-3xl sm:text-4xl font-extrabold text-slate-100 dark:text-slate-100 light:text-slate-900">
-                    CONTACT & COLLABORATION
-                </h2>
-                <p class="text-xs sm:text-sm text-slate-400 dark:text-slate-400 light:text-slate-600">
-                    Mari berkolaborasi untuk proyek penyutradaraan, penulisan naskah, atau tim produksi.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                
-                <div class="lg:col-span-5 space-y-4">
-                    <h3 class="heading-font text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900">
-                        Kontak Langsung
-                    </h3>
-
-                    <a href="https://wa.me/6285604613503" target="_blank" rel="noopener noreferrer"
-                       class="p-4 rounded-2xl bg-darkCard border border-slate-800 hover:border-emerald-500 card-glow flex items-center gap-4 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-950 border border-emerald-500/50 flex items-center justify-center text-emerald-400 text-xl group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-whatsapp"></i>
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-wider block">WhatsApp</span>
-                            <span class="text-sm font-semibold text-slate-100 dark:text-slate-100 light:text-slate-900">+62 856-0461-3503</span>
-                        </div>
-                    </a>
-
-                    <a href="mailto:Ra.dtyxofficial@gmail.com"
-                       class="p-4 rounded-2xl bg-darkCard border border-slate-800 hover:border-rose-500 card-glow flex items-center gap-4 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-rose-950 border border-rose-500/50 flex items-center justify-center text-rose-400 text-xl group-hover:scale-110 transition-transform">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div class="overflow-hidden">
-                            <span class="text-[10px] font-bold text-rose-400 uppercase tracking-wider block">Email Official</span>
-                            <span class="text-xs sm:text-sm font-semibold text-slate-100 dark:text-slate-100 light:text-slate-900 truncate block">Ra.dtyxofficial@gmail.com</span>
-                        </div>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/aditiya-ramadhani-421a24428?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"
-                       class="p-4 rounded-2xl bg-darkCard border border-slate-800 hover:border-sky-500 card-glow flex items-center gap-4 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-sky-950 border border-sky-500/50 flex items-center justify-center text-sky-400 text-xl group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold text-sky-400 uppercase tracking-wider block">LinkedIn</span>
-                            <span class="text-sm font-semibold text-slate-100 dark:text-slate-100 light:text-slate-900">Aditiya Ramadhani</span>
-                        </div>
-                    </a>
-
-                    <a href="https://www.instagram.com/ra.dtyx?igsh=ZjdxMHFleXFrN2xu" target="_blank" rel="noopener noreferrer"
-                       class="p-4 rounded-2xl bg-darkCard border border-slate-800 hover:border-pink-500 card-glow flex items-center gap-4 transition-all group">
-                        <div class="w-12 h-12 rounded-xl bg-pink-950 border border-pink-500/50 flex items-center justify-center text-pink-400 text-xl group-hover:scale-110 transition-transform">
-                            <i class="fa-brands fa-instagram"></i>
-                        </div>
-                        <div>
-                            <span class="text-[10px] font-bold text-pink-400 uppercase tracking-wider block">Instagram</span>
-                            <span class="text-sm font-semibold text-slate-100 dark:text-slate-100 light:text-slate-900">@ra.dtyx</span>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="lg:col-span-7 p-6 sm:p-8 rounded-3xl bg-darkCard border border-slate-800 backdrop-blur-md shadow-2xl space-y-4">
-                    <h3 class="heading-font text-lg font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 flex items-center gap-2">
-                        <i class="fa-solid fa-paper-plane text-rose-500"></i>
-                        <span>Kirim Pesan / Ajakan Kolaborasi</span>
-                    </h3>
-
-                    <form id="waForm" onsubmit="sendToWhatsApp(event)" class="space-y-4 pt-2">
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1">Nama Lengkap</label>
-                            <input type="text" id="waName" required placeholder="Masukkan nama Anda..."
-                                   class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-rose-500 text-xs text-slate-200 focus:outline-none transition-colors">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1">Perusahaan / Instansi</label>
-                            <input type="text" id="waOrg" placeholder="Contoh: Rumah Produksi / Komunitas Film"
-                                   class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-rose-500 text-xs text-slate-200 focus:outline-none transition-colors">
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-bold text-slate-300 mb-1">Pesan / Saran / Ajakan Kerja Sama</label>
-                            <textarea id="waMessage" rows="4" required placeholder="Tuliskan pesan Anda..."
-                                      class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 focus:border-rose-500 text-xs text-slate-200 focus:outline-none transition-colors"></textarea>
-                        </div>
-
-                        <button type="submit" 
-                                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-800 hover:from-emerald-500 hover:to-emerald-700 text-white font-bold text-xs shadow-lg flex items-center justify-center gap-2 transition-all">
-                            <i class="fa-brands fa-whatsapp text-lg"></i>
-                            <span>Kirimkan via WhatsApp Direct</span>
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="border-t border-slate-800/80 bg-slate-950/90 py-8 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
-            <div>
-                <h4 class="font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 text-sm sm:text-base">Aditiya Ramadhani</h4>
-                <p class="text-xs text-rose-400 mt-0.5">Sutradara • ScriptWriter • Crew Magang</p>
-            </div>
-
-            <div class="text-xs text-slate-400 space-y-1 md:text-right">
-                <p class="font-mono text-slate-300">ra.dtyxofficial@gmail.com</p>
-                <p>©2026 • Crafted Frame By Ra.dtx</p>
-            </div>
-        </div>
-    </footer>
-
-
-    <!-- MODAL -->
-    <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
-            
-            <div class="p-5 bg-gradient-to-r from-rose-950 via-slate-900 to-slate-900 border-b border-slate-800 flex justify-between items-start">
-                <div>
-                    <span id="modalCategory" class="text-[10px] font-bold text-rose-400 uppercase tracking-widest block">Kategori</span>
-                    <h3 id="modalTitle" class="heading-font text-xl sm:text-2xl font-bold text-white mt-0.5">Judul Proyek</h3>
-                    <p id="modalRole" class="text-xs font-semibold text-rose-300 mt-0.5">Peran Proyek</p>
-                </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white p-2 rounded-lg bg-slate-800/50 hover:bg-rose-900/50 transition">
-                    <i class="fa-solid fa-xmark text-lg"></i>
-                </button>
-            </div>
-
-            <div class="p-6 overflow-y-auto space-y-6 text-slate-300 text-xs sm:text-sm leading-relaxed">
-                <div id="modalVideoSection" class="hidden space-y-2">
-                    <h4 class="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-play-circle text-rose-500"></i>
-                        <span>Teaser / Video Preview</span>
-                    </h4>
-                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                        <iframe id="modalIframe" src="" class="w-full h-full border-0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                    </div>
-                </div>
-
-                <div id="modalSynopsisSection" class="hidden space-y-2">
-                    <h4 class="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-book-open text-rose-500"></i>
-                        <span>Sinopsis & Catatan Sutradara</span>
-                    </h4>
-                    <div id="modalSynopsisText" class="p-4 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-300 leading-relaxed whitespace-pre-line"></div>
-                </div>
-
-                <div id="modalGallerySection" class="hidden space-y-2">
-                    <h4 class="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-images text-rose-500"></i>
-                        <span>Foto BTS, Grab Stills & Dokumen Produksi</span>
-                    </h4>
-                    <div id="modalGalleryGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3"></div>
-                </div>
-            </div>
-
-            <div class="p-4 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
-                <span class="text-[11px] text-slate-500">Aditiya Ramadhani Portfolio</span>
-                <button onclick="closeModal()" class="px-5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs">
-                    Tutup
-                </button>
-            </div>
-
-        </div>
+      </div>
     </div>
 
+    <!-- Bio & Quick Links -->
+    <div class="w-full md:w-2/3 space-y-6">
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        Selamat Datang di Portofolio Sinematik Saya
+      </h1>
+      <p class="text-slate-600 dark:text-neutral-300 leading-relaxed text-lg">
+        Saya adalah seorang pembuat film yang berfokus pada peran **Produser** dan **Art Director**. Berikhtiar menggabungkan manajemen eksekusi produksi yang rapi dengan estetika tata visual untuk menghidupkan narasi fiksi maupun dokumenter.
+      </p>
+      
+      <div class="flex flex-wrap gap-4 pt-2">
+        <a href="https://drive.google.com/drive/folders/1Q7JEp3p2zZTqL6SS1_-3d3iZ_cNi0qJQ" target="_blank" class="px-6 py-3 bg-brand-red text-white font-semibold rounded-lg hover:bg-red-700 transition flex items-center gap-2 shadow-lg">
+          <i class="fab fa-google-drive"></i> Folder Google Drive Utama
+        </a>
+        <a href="https://drive.google.com/drive/folders/1Gb4Q0j1pOIbb-SU_ukXDu9k8eNxi_jBb" target="_blank" class="px-6 py-3 border-2 border-amber-500 text-amber-600 dark:border-brand-gold dark:text-brand-gold hover:bg-amber-500 hover:text-white dark:hover:bg-brand-gold dark:hover:text-neutral-900 font-semibold rounded-lg transition flex items-center gap-2">
+          <i class="fas fa-award"></i> Folder Sertifikat
+        </a>
+      </div>
+    </div>
+  </section>
 
-    <!-- SCRIPT & ELASTIC RUBBER PHYSICS -->
-    <script>
-        const projectsData = [
-            {
-                id: 'action-in-game',
-                title: 'Action In The Game (2023)',
-                category: 'Film Fiksi',
-                role: 'Produser',
-                year: '2023',
-                poster: 'https://drive.google.com/thumbnail?id=1fhro7x4NZ9ZpiRRTIm76y_iXJRjr5GPY&sz=w600',
-                btsVideo: 'https://drive.google.com/file/d/1tCOYMu9OcP6odv2THdljxP5myrZLLpo-/preview',
-                synopsis: 'Eksplorasi ketegangan dunia permainan dan realitas sosial. Proyek ini menguji ketangguhan manajemen produksi audiovisual dalam menghadirkan narasi yang dinamis.',
-                images: ['https://drive.google.com/thumbnail?id=1fhro7x4NZ9ZpiRRTIm76y_iXJRjr5GPY&sz=w600']
-            },
-            {
-                id: 'suanggi',
-                title: 'Suanggi - Ilmu Hitam Tanah Timur (2024)',
-                category: 'Film Fiksi',
-                role: 'Director and ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=1BHE6CEU4KQxMZqG3sjZ816EdjI-AAh4j&sz=w600',
-                synopsis: `Maria, seorang perempuan hamil yang tinggal sendirian di desa terpencil, karena suaminya sedang merantau. Ketika maria diperingatkan oleh seorang tetangga tentang suanggi, sosok mistis dalam mitos lokal, ia awalnya mengabaikannya. Namun, saat perjalanan pulangnya, ia mulai merasakan kehadiran sesuatu yang mengikutinya. Puncak teror terjadi ketika suanggi muncul di rumahnya, merenggut janinnya dengan brutal. Film ini berakhir dengan adegan mengerikan seorang wanita yang menjilati janin maria di depan sesajen.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1BHE6CEU4KQxMZqG3sjZ816EdjI-AAh4j&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1TrygC-BmDjhTagcpuV3nbkpZ0lQlx-kL&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1etUgIpQi0Jx9NGIJ286khjg1JyqFThnj&sz=w600'
-                ]
-            },
-            {
-                id: 'pagi-diambang-ilusi',
-                title: 'Pagi Diambang Ilusi (2024)',
-                category: 'Film Fiksi',
-                role: 'Producer and ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=1LaXdxI7O7ednMFZGrCEpR0ZMXQ3B8qGW&sz=w600',
-                synopsis: `Putra (21), seorang pemuda pendiam yang masih terjebak dalam luka masa lalu, berjuang menghadapi kesepian setelah kehilangan Manda (21), cinta pertamanya yang telah tiada. Saat tengah membereskan kamar kosnya yang berantakan, ia menemukan kamera lama yang penuh kenangan. Dengan dorongan nostalgia, ia berimajinasi ke sebuah bukit yang menyimpan banyak memori indah bersama Manda.
+  <!-- TAB NAVIGATION -->
+  <section class="max-w-7xl mx-auto px-4 w-full mt-8">
+    <div class="flex border-b border-slate-300 dark:border-neutral-800 gap-8 text-lg font-semibold overflow-x-auto">
+      <button onclick="switchTab('work')" id="tab-work" class="pb-4 border-b-2 border-brand-red text-brand-red transition whitespace-nowrap">
+        <i class="fas fa-video mr-2"></i> Work Portfolio
+      </button>
+      <button onclick="switchTab('awards')" id="tab-awards" class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition whitespace-nowrap">
+        <i class="fas fa-trophy mr-2"></i> Festivals & Awards
+      </button>
+      <button onclick="switchTab('skills')" id="tab-skills" class="pb-4 border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 transition whitespace-nowrap">
+        <i class="fas fa-tools mr-2"></i> Skills & Gear
+      </button>
+    </div>
+  </section>
 
-Putra berhalusinasi bertemu dengan Manda yang berada di bukit tersebut. Kehadiran Manda membangkitkan kenangan akan cinta pertama mereka. Namun Manda berusaha menyadarkan Putra untuk menerima kenyataan. Saat tombol kamera ditekan, Manda menghilang, meninggalkan Putra seorang diri dalam realitas bahwa pertemuan tersebut hanyalah halusinasi akibat menunda minum obat.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1LaXdxI7O7ednMFZGrCEpR0ZMXQ3B8qGW&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1BdOCIQiSpX2J-yF_43gTtgN9RtCVWeqW&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1DladY1uqIbEBY13ePmcDDtSMAvLLLi-f&sz=w600'
-                ]
-            },
-            {
-                id: 'hari-itu',
-                title: 'Hari Itu, Kita bertemu lagi (2026)',
-                category: 'Film Fiksi',
-                role: 'Director and ScriptWriter',
-                year: '2026',
-                poster: 'https://drive.google.com/thumbnail?id=1aq0XNByIlPzB0ZlzmnhO6tVKuN4Sxs1J&sz=w600',
-                trailer: 'https://drive.google.com/file/d/1zPrK_nu_E8fWPT8FpHaCQTvh9LJf1O4K/preview',
-                synopsis: `SINOPSIS:
-Erik, seorang mahasiswa fotografi tingkat akhir, tanpa sengaja dipertemukan kembali dengan Winda, mantan kekasihnya semasa SMA, setelah kelompoknya memilih Winda sebagai model pemotretan. Pertemuan ini membangkitkan kembali rasa nyaman dan percakapan masa lalu. Namun saat Erik mencoba mengajak Winda kembali berhubungan, Winda mengakhiri pertemuan tersebut karena tak lagi memiliki rasa yang sama.
+  <!-- TAB CONTENT -->
+  <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-grow">
+    
+    <!-- SECTION 1: WORK PORTFOLIO -->
+    <div id="content-work" class="space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Proyek Film</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- CARD 1: ACTION IN THE GAME -->
+        <div class="bg-white dark:bg-brand-card rounded-xl overflow-hidden border border-slate-200 dark:border-neutral-800 shadow-lg flex flex-col transition-colors">
+          <div class="relative h-72 bg-slate-200 dark:bg-neutral-900 overflow-hidden group">
+            <img src="Poster - Action In The Game.jpg" alt="Poster Action In The Game" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://placehold.co/600x800/e2e8f0/1e293b?text=Action+In+The+Game'">
+            <span class="absolute top-3 left-3 bg-brand-red text-white text-xs font-bold px-2.5 py-1 rounded shadow">FIKSI</span>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Action In The Game</h3>
+              <p class="text-xs text-amber-600 dark:text-brand-gold font-bold mb-2">Producer & Art Director</p>
+              <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-3">
+                Sebuah produksi drama/thriller fiksi yang diproduseri oleh M. Aditiya Ramadhani dan disutradarai oleh I Wayan Bhisma Maha Putra.
+              </p>
+            </div>
+            <button onclick="openModal('action-in-the-game')" class="w-full py-2 bg-slate-100 text-slate-800 dark:bg-neutral-800 dark:text-white hover:bg-brand-red hover:text-white dark:hover:bg-brand-red transition rounded font-semibold text-sm flex items-center justify-center gap-2 border border-slate-300 dark:border-transparent">
+              <i class="fas fa-info-circle"></i> View Details & BTS
+            </button>
+          </div>
+        </div>
 
-DIRECTOR STATEMENT:
-Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat memahami perasaannya sendiri dan baru sadar ketika semua sudah lewat. Melalui kisah ini, saya ingin menghadirkan pengalaman yang terasa dekat tentang cinta yang tidak selalu berakhir bahagia.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1aq0XNByIlPzB0ZlzmnhO6tVKuN4Sxs1J&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1JoEzpCdyrHS41Zdqzv7JexHvGsDv1SjO&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1Eo60vHJZrfOqvk6tij-tlT64uUAT2CTT&sz=w600',
-                    'https://drive.google.com/thumbnail?id=12SrXuuVVkpZimdk3KF41f4Qtxzx89tAs&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1LMhohgZMzu2XipxLtrZDz33YN9MpzN50&sz=w600'
-                ]
-            },
-            {
-                id: 'menguak-tuak',
-                title: 'Dokumenter Menguak Tuak (2024)',
-                category: 'Dokumenter',
-                role: 'Producer and ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=1IgWv12pr3XKi7fG4hggHn8BrEkLtyNaB&sz=w600',
-                trailer: 'https://drive.google.com/file/d/1qrhuvQ4zORvnx8KIMhqekFQrrYFKxp1h/preview',
-                synopsis: `Film dokumenter tentang proses pembuatan tuak di Tenganan yang menggambarkan keseharian masyarakat dalam membuat minuman tradisional tersebut, mulai dari pengumpulan nira dari pohon aren hingga penyaringan. Menyoroti peran masyarakat dalam menjaga pengetahuan turun-temurun dan nilai budaya.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1IgWv12pr3XKi7fG4hggHn8BrEkLtyNaB&sz=w600',
-                    'https://drive.google.com/thumbnail?id=114Jfb-3x2Jo46ZiPo_jna1VfNsN7fv6U&sz=w600',
-                    'https://drive.google.com/thumbnail?id=17xuygDIYb7V6MgaF7MoS7BQLtpUqla7c&sz=w600'
-                ]
-            },
-            {
-                id: 'bukan-desa-budaya',
-                title: 'Dokumenter Bukan Desa Budaya (2024)',
-                category: 'Dokumenter',
-                role: 'Producer and ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=1WLdMe6qJb8pRYGvDdE4jePPIfWL3KjSJ&sz=w600',
-                trailer: 'https://drive.google.com/file/d/1NR4noV81I9JWqUJQbyS-cYXc83eG_uTv/preview',
-                synopsis: `Film dokumenter investigasi yang menggali dampak sosial dan lingkungan dari proyek Tempat Pengolahan Sampah Terpadu (TPST) di Desa Kesiman Kertalangu yang kini telah ditutup. Menampilkan suara dan keluhan warga mengenai polusi udara dan kesehatan.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1WLdMe6qJb8pRYGvDdE4jePPIfWL3KjSJ&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1J-dk_k8KRPyQu781fn9HXlmqkA748Wlk&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1HZDiPLH15VbvhMY_ON0T2OBvF2AjyX3W&sz=w600'
-                ]
-            },
-            {
-                id: 'seragam-dan-malam',
-                title: 'Dokumenter Seragam Dan Malam (2026)',
-                category: 'Dokumenter',
-                role: 'Second Director of Photography',
-                year: '2026',
-                poster: 'https://drive.google.com/thumbnail?id=176S5qY5GD6VMufWbY6lYO-QUSiqnx7jQ&sz=w600',
-                trailer: 'https://drive.google.com/file/d/1614ZrgZ9sydyZHxmhVaBpXOC3Y51doki/preview',
-                synopsis: `Dokumenter observasional yang merekam potret kehidupan pekerja malam yang tersembunyi di balik seragam pekerjaan mereka.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=176S5qY5GD6VMufWbY6lYO-QUSiqnx7jQ&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1XS2vz2N5U3_YuJhgOT0kUv5KzC6ZFomj&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1lkz5PMFhnEnMi45nlLYmKvJEQ1IO-C_B&sz=w600'
-                ]
-            },
-            {
-                id: 'pinjol-ilegal',
-                title: 'Iklan Pinjaman Online Ilegal (2024)',
-                category: 'Iklan Layanan Masyarakat',
-                role: 'Producer and ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=141tuxsYljra_LUvMsB6FRo3wpi2sifCK&sz=w600',
-                trailer: 'https://drive.google.com/file/d/1tZkYHQDnTERCeyIBHuWyc7O4KVfIFCD4/preview',
-                synopsis: `Kampanye edukasi publik berdurasi singkat mengenai bahaya terjerat pinjaman online ilegal yang merugikan finansial dan psikologis.`,
-                images: ['https://drive.google.com/thumbnail?id=141tuxsYljra_LUvMsB6FRo3wpi2sifCK&sz=w600']
-            },
-            {
-                id: 'ini-juga-film',
-                title: 'Iklan Ini Juga Film (2025)',
-                category: 'Iklan Layanan Masyarakat',
-                role: 'ScriptWriter',
-                year: '2025',
-                poster: 'https://drive.google.com/thumbnail?id=1IvQ6TWXVwzDAOD6sgBQsOXu7e_ogHoC_&sz=w600',
-                synopsis: `Iklan kesadaran publik kreatif mengenai apresiasi seni film dan medium edukasi visual.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1IvQ6TWXVwzDAOD6sgBQsOXu7e_ogHoC_&sz=w600',
-                    'https://drive.google.com/thumbnail?id=15CVO1xReXkP4A2lR1JlrwZm4U3ni6ukX&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1R6WSXLCztlZNeBTn6NhCvdMrxiom4SGN&sz=w600'
-                ]
-            },
-            {
-                id: 'berawai',
-                title: 'Berawai (2024)',
-                category: 'Script',
-                role: 'ScriptWriter',
-                year: '2024',
-                poster: 'https://drive.google.com/thumbnail?id=1MRzcHmEuKTnxVNoCryyvNyirZzYp-jC6&sz=w600',
-                synopsis: `Naskah skenario fiksi pendek beserta dokumen Production Book pengembangan cerita Berawai.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1MRzcHmEuKTnxVNoCryyvNyirZzYp-jC6&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1qsdszCZSaRL-5IoFtMnvM75ImR26dehJ&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1Tz3_YEYT-9HZ_zfIzuPNiMPFvoUt_Phv&sz=w600'
-                ]
-            },
-            {
-                id: 'terbit-tak-tersambut',
-                title: 'Terbit Yang Tak Tersambut (2025)',
-                category: 'Script',
-                role: 'ScriptWriter',
-                year: '2025',
-                poster: 'https://drive.google.com/thumbnail?id=1GzgQUYjLJkzjfEVcmJrhk-kdW4880UBX&sz=w600',
-                synopsis: `Naskah skenario drama puitis beserta dokumen Production Book pendukung.`,
-                images: [
-                    'https://drive.google.com/thumbnail?id=1GzgQUYjLJkzjfEVcmJrhk-kdW4880UBX&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1JUzRFlg0dFI6HrlOUyYSUtxG-WYwVewm&sz=w600',
-                    'https://drive.google.com/thumbnail?id=1XN7APYyZMliNnQOItBdq1zlaht8gkZ8M&sz=w600'
-                ]
-            }
-        ];
+        <!-- CARD 2: SUANGGI -->
+        <div class="bg-white dark:bg-brand-card rounded-xl overflow-hidden border border-slate-200 dark:border-neutral-800 shadow-lg flex flex-col transition-colors">
+          <div class="relative h-72 bg-slate-100 dark:bg-neutral-900 overflow-hidden group flex items-center justify-center border-b border-slate-200 dark:border-neutral-800">
+            <div class="text-center p-4">
+              <i class="fas fa-ghost text-5xl text-brand-red mb-3"></i>
+              <h4 class="font-bold text-sm text-slate-700 dark:text-neutral-200">Suanggi, Ilmu Hitam Tanah Timur</h4>
+            </div>
+            <span class="absolute top-3 left-3 bg-brand-red text-white text-xs font-bold px-2.5 py-1 rounded shadow">FIKSI / HOROR</span>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Suanggi, Ilmu Hitam Tanah Timur</h3>
+              <p class="text-xs text-amber-600 dark:text-brand-gold font-bold mb-2">Producer & Art Director</p>
+              <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-3">
+                Karya fiksi yang mengangkat mitos dan mistisisme kebudayaan Suanggi dari tanah Indonesia Timur.
+              </p>
+            </div>
+            <button onclick="openModal('suanggi')" class="w-full py-2 bg-slate-100 text-slate-800 dark:bg-neutral-800 dark:text-white hover:bg-brand-red hover:text-white dark:hover:bg-brand-red transition rounded font-semibold text-sm flex items-center justify-center gap-2 border border-slate-300 dark:border-transparent">
+              <i class="fas fa-info-circle"></i> View Details & Drive
+            </button>
+          </div>
+        </div>
 
-        function renderProjects(catFilter = 'all') {
-            const container = document.getElementById('projectsGrid');
-            container.innerHTML = '';
+        <!-- CARD 3: MENGUAK TUAK -->
+        <div class="bg-white dark:bg-brand-card rounded-xl overflow-hidden border border-slate-200 dark:border-neutral-800 shadow-lg flex flex-col transition-colors">
+          <div class="relative h-72 bg-slate-100 dark:bg-neutral-900 flex items-center justify-center border-b border-slate-200 dark:border-neutral-800">
+            <div class="text-center p-4">
+              <i class="fas fa-wine-glass-alt text-5xl text-amber-500 mb-3"></i>
+              <h4 class="font-bold text-sm text-slate-700 dark:text-neutral-200">Menguak Tuak</h4>
+            </div>
+            <span class="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded shadow">DOKUMENTER</span>
+          </div>
+          <div class="p-5 flex-grow flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="text-xl font-bold mb-1 text-slate-900 dark:text-white">Menguak Tuak</h3>
+              <p class="text-xs text-amber-600 dark:text-brand-gold font-bold mb-2">Producer & Art Director</p>
+              <p class="text-sm text-slate-600 dark:text-neutral-400 line-clamp-3">
+                Film dokumenter eksploratif yang menelusuri kebudayaan, tradisi, dan pembuatan minuman tradisional tuak.
+              </p>
+            </div>
+            <button onclick="openModal('menguak-tuak')" class="w-full py-2 bg-slate-100 text-slate-800 dark:bg-neutral-800 dark:text-white hover:bg-brand-red hover:text-white dark:hover:bg-brand-red transition rounded font-semibold text-sm flex items-center justify-center gap-2 border border-slate-300 dark:border-transparent">
+              <i class="fas fa-info-circle"></i> View Details
+            </button>
+          </div>
+        </div>
 
-            const filtered = catFilter === 'all' 
-                ? projectsData 
-                : projectsData.filter(p => p.category === catFilter);
+      </div>
+    </div>
 
-            filtered.forEach(p => {
-                const card = document.createElement('div');
-                card.className = 'p-5 rounded-2xl bg-darkCard border border-slate-800 hover:border-rose-600/70 card-glow flex flex-col justify-between backdrop-blur-md transition-all duration-300';
+    <!-- SECTION 2: FESTIVALS & AWARDS -->
+    <div id="content-awards" class="hidden space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Penghargaan & Festival</h2>
+      <div class="bg-white dark:bg-brand-card p-6 rounded-xl border border-slate-200 dark:border-neutral-800 shadow-lg space-y-4 transition-colors">
+        <div class="flex items-start gap-4">
+          <div class="p-3 bg-amber-100 text-amber-600 dark:bg-brand-gold/20 dark:text-brand-gold rounded-lg">
+            <i class="fas fa-trophy text-2xl"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 dark:text-white">Kompetisi Monolog Campus Week 2026</h3>
+            <p class="text-sm text-slate-600 dark:text-neutral-400">Peserta / Konseptor Visual</p>
+            <p class="text-xs text-slate-500 dark:text-neutral-500 mt-1">Sertifikat dan dokumen pendukung tersimpan di folder Google Drive sertifikat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-                card.innerHTML = `
-                    <div class="space-y-4">
-                        <div class="relative h-56 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 group">
-                            <img src="${p.poster}" alt="${p.title}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                            
-                            <span class="absolute top-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full bg-rose-950/80 text-rose-300 border border-rose-800 backdrop-blur-sm">
-                                ${p.category}
-                            </span>
-                            <span class="absolute top-3 right-3 text-[10px] font-extrabold px-2 py-0.5 rounded bg-slate-900/80 text-slate-300 border border-slate-700">
-                                ${p.year}
-                            </span>
-                        </div>
+    <!-- SECTION 3: SKILLS & GEAR -->
+    <div id="content-skills" class="hidden space-y-6">
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Keahlian & Peralatan</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white dark:bg-brand-card p-6 rounded-xl border border-slate-200 dark:border-neutral-800 shadow-lg transition-colors">
+          <h3 class="text-lg font-bold mb-4 text-brand-red"><i class="fas fa-user-ninja mr-2"></i> Peran Produksi</h3>
+          <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-200">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Film Producer (Budgeting, Scheduling, Logistics)</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Art Director (Set Design, Prop Master, Color Palette)</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Lighting Department</li>
+          </ul>
+        </div>
+        <div class="bg-white dark:bg-brand-card p-6 rounded-xl border border-slate-200 dark:border-neutral-800 shadow-lg transition-colors">
+          <h3 class="text-lg font-bold mb-4 text-amber-600 dark:text-brand-gold"><i class="fas fa-laptop-code mr-2"></i> Software & Perangkat</h3>
+          <ul class="space-y-2 text-sm text-slate-700 dark:text-slate-200">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Adobe Premiere Pro & Editing Tools</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-500"></i> Production Management & Pitching Tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-                        <div>
-                            <h3 class="heading-font text-base font-bold text-slate-100 dark:text-slate-100 light:text-slate-900 line-clamp-1">
-                                ${p.title}
-                            </h3>
-                            <p class="text-xs font-semibold text-rose-400 mt-1">
-                                <i class="fa-solid fa-user-tag text-[10px] mr-1"></i> ${p.role}
-                            </p>
-                        </div>
-                    </div>
+  </main>
 
-                    <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between">
-                        <button onclick="openModal('${p.id}')" 
-                                class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-rose-800 text-slate-200 hover:text-white font-semibold text-xs transition-all flex items-center justify-center gap-1.5 border border-slate-700 hover:border-rose-500">
-                            <i class="fa-solid fa-circle-info"></i> View Details
-                        </button>
-                    </div>
-                `;
+  <!-- MODAL DETAILS -->
+  <div id="projectModal" class="fixed inset-0 z-50 hidden modal-backdrop flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-neutral-900 border border-slate-200 dark:border-neutral-800 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl p-6 relative transition-colors">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-500 hover:text-slate-900 dark:text-neutral-400 dark:hover:text-white text-2xl font-bold">
+        &times;
+      </button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
 
-                container.appendChild(card);
-            });
-        }
+  <footer class="border-t border-slate-200 dark:border-neutral-800 py-6 text-center text-xs text-slate-500 dark:text-neutral-500 transition-colors">
+    &copy; 2026 M. Aditiya Ramadhani. All rights reserved.
+  </footer>
 
-        function filterCategory(cat) {
-            document.querySelectorAll('.cat-filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-cat') === cat) {
-                    btn.className = 'cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-rose-800/80 border-rose-600 text-white';
-                } else {
-                    btn.className = 'cat-filter-btn px-4 py-2 rounded-lg font-semibold border transition-all bg-slate-900/60 border-slate-800 text-slate-300 hover:border-rose-500';
-                }
-            });
-            renderProjects(cat);
-        }
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Tab Switcher
+    function switchTab(tab) {
+      const tabs = ['work', 'awards', 'skills'];
+      tabs.forEach(t => {
+        document.getElementById(`content-${t}`).classList.add('hidden');
+        document.getElementById(`tab-${t}`).classList.remove('border-brand-red', 'text-brand-red');
+        document.getElementById(`tab-${t}`).classList.add('border-transparent', 'text-slate-500');
+      });
+      document.getElementById(`content-${tab}`).classList.remove('hidden');
+      document.getElementById(`tab-${tab}`).classList.add('border-brand-red', 'text-brand-red');
+      document.getElementById(`tab-${tab}`).classList.remove('border-transparent', 'text-slate-500');
+    }
 
-        function switchTab(tabKey) {
-            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
-            document.querySelectorAll('.main-tab-btn').forEach(btn => {
-                btn.className = 'main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 text-slate-400 hover:text-slate-100';
-            });
+    // Modal System & Data
+    const modalData = {
+      'action-in-the-game': {
+        title: 'Action In The Game',
+        role: 'Producer & Art Director',
+        type: 'Film Fiksi',
+        credits: [
+          { role: 'Producer', name: 'M. Aditiya Ramadhani' },
+          { role: 'Director', name: 'I Wayan Bhisma Maha Putra' },
+          { role: 'Story Idea', name: 'Cambuh' },
+          { role: 'Script Writer', name: 'Anak Agung Ratumas Janaradja' },
+          { role: 'Editor', name: 'I Gede Bagus Satya Dharma Pratama' },
+          { role: 'Camera Operator', name: 'I Wayan Bhisma Maha Putra' },
+          { role: 'Art Director', name: 'M. Aditiya Ramadhani & I Gede Bagus Satya Dharma Pratama' },
+          { role: 'Audio', name: 'I Gede Bagus Satya Dharma Pratama' },
+          { role: 'Lighting', name: 'M. Aditiya Ramadhani' },
+          { role: 'Wardrobe', name: 'Indita Citraning Maharani' },
+          { role: 'Cast', name: 'I Gusti Ayu Yuko Dewi, Dewi Saraswati, Canny Duckvansari' }
+        ],
+        btsVideo: 'BTS - Action In The Game.mp4'
+      },
+      'suanggi': {
+        title: 'Suanggi, Ilmu Hitam Tanah Timur',
+        role: 'Producer & Art Director',
+        type: 'Film Fiksi / Horor',
+        driveLink: 'https://drive.google.com/drive/folders/1Ynx8tbYiySsHEqMnHLRZXOL0Qr4z1mjb',
+        credits: [
+          { role: 'Producer', name: 'M. Aditiya Ramadhani' }
+        ]
+      },
+      'menguak-tuak': {
+        title: 'Menguak Tuak',
+        role: 'Producer & Art Director',
+        type: 'Film Dokumenter',
+        credits: [
+          { role: 'Producer', name: 'M. Aditiya Ramadhani' }
+        ]
+      }
+    };
 
-            document.getElementById(`tabContent-${tabKey}`).classList.remove('hidden');
-            document.getElementById(`tabBtn-${tabKey}`).className = 'main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-rose-700 to-rose-900 text-white shadow-md';
-        }
+    function openModal(key) {
+      const data = modalData[key];
+      if (!data) return;
 
-        function openModal(id) {
-            const p = projectsData.find(item => item.id === id);
-            if (!p) return;
+      let html = `
+        <h2 class="text-2xl font-bold mb-1 text-slate-900 dark:text-white">${data.title}</h2>
+        <p class="text-sm text-amber-600 dark:text-brand-gold font-bold mb-4">${data.type} &bull; Peran: ${data.role}</p>
+      `;
 
-            document.getElementById('modalTitle').textContent = p.title;
-            document.getElementById('modalCategory').textContent = `${p.category} • ${p.year}`;
-            document.getElementById('modalRole').textContent = `Peran: ${p.role}`;
+      if (data.driveLink) {
+        html += `
+          <div class="mb-4">
+            <a href="${data.driveLink}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-brand-red text-white text-sm font-semibold rounded-lg hover:bg-red-700 transition shadow">
+              <i class="fab fa-google-drive"></i> Buka Folder Poster & Video BTS di Google Drive
+            </a>
+          </div>
+        `;
+      }
 
-            const videoSec = document.getElementById('modalVideoSection');
-            const iframe = document.getElementById('modalIframe');
-            const targetVideo = p.trailer || p.btsVideo;
-            if (targetVideo) {
-                iframe.src = targetVideo;
-                videoSec.classList.remove('hidden');
-            } else {
-                iframe.src = '';
-                videoSec.classList.add('hidden');
-            }
+      html += `
+        <div class="space-y-4">
+          <div>
+            <h4 class="font-bold text-sm text-brand-red mb-2">KERABAT KERJA (CREDITS)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs bg-slate-100 dark:bg-neutral-800 border border-slate-200 dark:border-transparent p-4 rounded-lg">
+      `;
 
-            const synSec = document.getElementById('modalSynopsisSection');
-            const synText = document.getElementById('modalSynopsisText');
-            if (p.synopsis) {
-                synText.textContent = p.synopsis;
-                synSec.classList.remove('hidden');
-            } else {
-                synSec.classList.add('hidden');
-            }
+      data.credits.forEach(c => {
+        html += `<div><span class="font-semibold text-slate-800 dark:text-neutral-300">${c.role}:</span> <span class="text-slate-600 dark:text-neutral-400">${c.name}</span></div>`;
+      });
 
-            const galSec = document.getElementById('modalGallerySection');
-            const galGrid = document.getElementById('modalGalleryGrid');
-            galGrid.innerHTML = '';
-            if (p.images && p.images.length > 0) {
-                p.images.forEach(imgUrl => {
-                    const imgDiv = document.createElement('div');
-                    imgDiv.className = 'h-32 rounded-xl overflow-hidden bg-slate-950 border border-slate-800';
-                    imgDiv.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover hover:scale-110 transition-transform">`;
-                    galGrid.appendChild(imgDiv);
-                });
-                galSec.classList.remove('hidden');
-            } else {
-                galSec.classList.add('hidden');
-            }
+      html += `</div></div>`;
 
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modal.querySelector('div').classList.remove('scale-95');
-            modal.querySelector('div').classList.add('scale-100');
-        }
+      if (data.btsVideo) {
+        html += `
+          <div>
+            <h4 class="font-bold text-sm text-brand-red mb-2">BEHIND THE SCENES (BTS)</h4>
+            <div class="rounded-lg overflow-hidden bg-slate-200 dark:bg-black shadow-md border border-slate-300 dark:border-neutral-800">
+              <video controls class="w-full max-h-80 object-contain">
+                <source src="${data.btsVideo}" type="video/mp4">
+                Browser Anda tidak mendukung pemutaran video.
+              </video>
+            </div>
+          </div>
+        `;
+      }
 
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            document.getElementById('modalIframe').src = '';
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modal.querySelector('div').classList.remove('scale-100');
-            modal.querySelector('div').classList.add('scale-95');
-        }
+      html += `</div>`;
 
-        function sendToWhatsApp(e) {
-            e.preventDefault();
-            const name = document.getElementById('waName').value.trim();
-            const org = document.getElementById('waOrg').value.trim();
-            const msg = document.getElementById('waMessage').value.trim();
+      document.getElementById('modalContent').innerHTML = html;
+      document.getElementById('projectModal').classList.remove('hidden');
+    }
 
-            const text = `Halo Aditiya Ramadhani,%0A%0ANama Saya: *${encodeURIComponent(name)}*%0AInstansi: *${encodeURIComponent(org || '-')}*%0A%0APesan/Ajakan Kolaborasi:%0A${encodeURIComponent(msg)}`;
-            window.open(`https://wa.me/6285604613503?text=${text}`, '_blank');
-        }
+    function closeModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+      document.getElementById('modalContent').innerHTML = '';
+    }
 
-        function runIntroSequence() {
-            const step1 = document.getElementById('introStep1');
-            const step2 = document.getElementById('introStep2');
+    // 3D Lanyard Card Effect
+    const card = document.getElementById('lanyardCard');
+    document.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        card.style.transform = `rotateY(${x / 10}deg) rotateX(${-y / 10}deg)`;
+      } else {
+        card.style.transform = `rotateY(0deg) rotateX(0deg)`;
+      }
+    });
 
-            setTimeout(() => step1.classList.remove('opacity-0', 'translate-y-4'), 300);
-            setTimeout(() => step1.classList.add('opacity-0', '-translate-y-4'), 2200);
+    // Dark Mode Toggle Logic
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    
+    // Set icon correctly on load
+    if (document.documentElement.classList.contains('dark')) {
+      themeIcon.className = 'fas fa-sun text-yellow-500';
+    } else {
+      themeIcon.className = 'fas fa-moon text-slate-700';
+    }
 
-            setTimeout(() => {
-                step1.classList.add('hidden');
-                step2.classList.remove('hidden');
-                setTimeout(() => step2.classList.remove('opacity-0', 'translate-y-4'), 50);
-            }, 2800);
-
-            setTimeout(() => finishIntro(), 5000);
-        }
-
-        function finishIntro() {
-            const intro = document.getElementById('introOverlay');
-            if (intro) {
-                intro.classList.add('opacity-0', 'pointer-events-none');
-                setTimeout(() => intro.remove(), 1000);
-            }
-        }
-
-        // --- ELASTIC RUBBER LANYARD & DRAG PHYSICS ---
-        const lanyardCard = document.getElementById('lanyardContainer');
-        const lanyardStrap = document.getElementById('lanyardStrap');
-        const idCard3D = document.getElementById('idCard3D');
-        let isDragging = false;
-        let startY = 0;
-        let currentY = 0;
-        const defaultHeight = 180;
-
-        if (lanyardCard) {
-            lanyardCard.addEventListener('pointerdown', (e) => {
-                isDragging = true;
-                startY = e.clientY;
-                lanyardCard.setPointerCapture(e.pointerId);
-                lanyardStrap.style.transition = 'none';
-                idCard3D.style.transition = 'none';
-            });
-
-            lanyardCard.addEventListener('pointermove', (e) => {
-                if (!isDragging) return;
-                const deltaY = e.clientY - startY;
-                if (deltaY > 0) {
-                    currentY = Math.min(deltaY * 0.7, 140);
-                    lanyardStrap.style.height = `${defaultHeight + currentY}px`;
-                    idCard3D.style.transform = `translateY(${currentY}px) rotateX(${currentY * 0.1}deg) scale(${1 + currentY * 0.001})`;
-                }
-            });
-
-            const stopDrag = (e) => {
-                if (isDragging) {
-                    isDragging = false;
-                    lanyardStrap.style.transition = 'height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    idCard3D.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    lanyardStrap.style.height = `${defaultHeight}px`;
-                    idCard3D.style.transform = `translateY(0px) rotateX(0deg) scale(1)`;
-                }
-            };
-
-            lanyardCard.addEventListener('pointerup', stopDrag);
-            lanyardCard.addEventListener('pointercancel', stopDrag);
-        }
-
-        // --- THEME SWITCHER & OBSERVER ---
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            const html = document.documentElement;
-            const icon = document.getElementById('themeIcon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
-                icon.className = 'fa-solid fa-sun text-base text-amber-500';
-            } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
-                icon.className = 'fa-solid fa-moon text-base text-amber-300';
-            }
-        });
-
-        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => document.getElementById('mobileMenu').classList.add('hidden'));
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('is-visible');
-            });
-        }, { threshold: 0.1 });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            runIntroSequence();
-            renderProjects('all');
-            document.querySelectorAll('.fade-in-section').forEach(sec => observer.observe(sec));
-        });
-    </script>
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      if (document.documentElement.classList.contains('dark')) {
+        themeIcon.className = 'fas fa-sun text-yellow-500';
+      } else {
+        themeIcon.className = 'fas fa-moon text-slate-700';
+      }
+    });
+  </script>
 </body>
 </html>
-
