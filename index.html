@@ -219,7 +219,6 @@
             <!-- 3D Hanging ID Card Frame -->
             <div id="idCard3D" class="id-card-frame w-64 -mt-1 shadow-2xl relative select-none">
                 
-                <!-- The ID Card itself remains dark colored as part of its physical design -->
                 <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden">
                     
                     <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
@@ -787,7 +786,7 @@
     </footer>
 
 
-    <!-- MODAL -->
+    <!-- MODAL PROJECT DETAILS -->
     <div id="projectModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 dark:bg-slate-950/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
         <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300 max-h-[90vh] flex flex-col">
             
@@ -837,6 +836,16 @@
                 </button>
             </div>
 
+        </div>
+    </div>
+
+    <!-- LIGHTBOX OVERLAY (For clicking images in the modal) -->
+    <div id="lightboxOverlay" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeLightbox(event)">
+        <button onclick="closeLightbox(event)" class="absolute top-4 right-4 sm:top-8 sm:right-8 text-slate-400 hover:text-white p-3 rounded-full bg-slate-800/60 hover:bg-rose-600 transition-colors z-[120]">
+            <i class="fa-solid fa-xmark text-2xl"></i>
+        </button>
+        <div class="relative max-w-full max-h-full">
+            <img id="lightboxImage" src="" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 object-contain select-none" />
         </div>
     </div>
 
@@ -1076,6 +1085,32 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             document.getElementById(`tabBtn-${tabKey}`).className = 'main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-rose-600 to-rose-800 text-white shadow-md';
         }
 
+        // --- LIGHTBOX FUNCTIONS ---
+        function openLightbox(imgUrl) {
+            const overlay = document.getElementById('lightboxOverlay');
+            const img = document.getElementById('lightboxImage');
+            
+            img.src = imgUrl;
+            overlay.classList.remove('opacity-0', 'pointer-events-none');
+            img.classList.remove('scale-95');
+            img.classList.add('scale-100');
+        }
+
+        function closeLightbox(event) {
+            // Prevent closing if the user actually clicked exactly on the image itself
+            if (event && event.target.id === 'lightboxImage') return;
+            
+            const overlay = document.getElementById('lightboxOverlay');
+            const img = document.getElementById('lightboxImage');
+            
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+            
+            // Wait for fade out to clear src
+            setTimeout(() => { img.src = ''; }, 300);
+        }
+
         function openModal(id) {
             const p = projectsData.find(item => item.id === id);
             if (!p) return;
@@ -1110,8 +1145,17 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             if (p.images && p.images.length > 0) {
                 p.images.forEach(imgUrl => {
                     const imgDiv = document.createElement('div');
-                    imgDiv.className = 'h-32 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800';
-                    imgDiv.innerHTML = `<img src="${imgUrl}" class="w-full h-full object-cover hover:scale-110 transition-transform">`;
+                    // Add classes for styling and hover state
+                    imgDiv.className = 'h-32 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 cursor-pointer group relative';
+                    // Trigger lightbox on click
+                    imgDiv.onclick = () => openLightbox(imgUrl);
+                    
+                    imgDiv.innerHTML = `
+                        <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                            <i class="fa-solid fa-expand text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300 text-2xl drop-shadow-lg"></i>
+                        </div>
+                    `;
                     galGrid.appendChild(imgDiv);
                 });
                 galSec.classList.remove('hidden');
