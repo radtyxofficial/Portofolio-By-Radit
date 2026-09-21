@@ -189,7 +189,7 @@
     </header>
 
 
-    <!-- HERO SECTION WITH CURVED 3D FABRIC LANYARD -->
+    <!-- HERO SECTION WITH CURVED 3D FABRIC LANYARD & DROP BOUNCE ANIMATION -->
     <section id="home" class="relative z-10 pt-12 pb-16 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
         <!-- INTERACTIVE 3D FABRIC LANYARD CONTAINER -->
@@ -1221,7 +1221,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
             sections.forEach(section => {
                 const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 120; // Offset header sticky
+                const sectionTop = section.offsetTop - 120;
                 const sectionId = section.getAttribute('id');
 
                 if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -1239,7 +1239,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // 3D FABRIC LANYARD CURVE PHYSICS + INITIAL DROP-IN BOUNCE ANIMATION
+        // 3D FABRIC LANYARD CURVE PHYSICS + DROP BOUNCE ANIMATION ON LOAD
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
         const strapLeft = document.getElementById('fabricStrapLeft');
@@ -1250,12 +1250,14 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
         
-        let currentX = 0, currentY = -450; 
+        // Posisi awal di atas layar agar tercipta animasi jatuh (drop bounce) saat pertama kali halaman terbuka
+        let currentX = 0, currentY = -520; 
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
-        const springPower = 0.048;  
-        const frictionPower = 0.78; 
+        // Parameter pegas dan fleksibilitas kain yang sangat responsif
+        const springPower = 0.045;  
+        const frictionPower = 0.76; 
 
         if (lanyardMoveable) {
             lanyardMoveable.addEventListener('pointerdown', (e) => {
@@ -1275,7 +1277,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                const maxStretch = 340; 
+                const maxStretch = 380; // Diperluas agar tarikan kursor lebih leluasa dan fleksibel
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
                     dx = (dx / dist) * maxStretch;
@@ -1298,8 +1300,8 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
             function animatePhysicsLoop() {
                 if (isDraggingLanyard) {
-                    currentX += (targetX - currentX) * 0.25;
-                    currentY += (targetY - currentY) * 0.25;
+                    currentX += (targetX - currentX) * 0.28;
+                    currentY += (targetY - currentY) * 0.28;
                 } else {
                     let ax = (targetX - currentX) * springPower;
                     let ay = (targetY - currentY) * springPower;
@@ -1314,21 +1316,25 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     currentY += velY;
                 }
 
-                let rotY = currentX * 0.14;  
-                let rotX = -currentY * 0.16; 
-                let rotZ = currentX * 0.05;  
+                // Kalkulasi Rotasi 3D Perspektif Berdasarkan Gerakan Cursor
+                let rotY = currentX * 0.16;  
+                let rotX = -currentY * 0.18; 
+                let rotZ = currentX * 0.06;  
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
+                // Titik Sambung Bawah Mengikuti Kartu ID secara Fleksibel
                 const endX = 140 + currentX;
                 const endY = 175 + currentY;
 
-                const controlLeftX = 75 + (currentX * 0.4);
-                const controlLeftY = 90 + (currentY * 0.4);
+                // Titik Kontrol Lengkungan Kain Lanyard yang Mengikuti Dinamika Tarikan
+                const controlLeftX = 75 + (currentX * 0.5) + (velX * 0.3);
+                const controlLeftY = 90 + (currentY * 0.5) + (velY * 0.3);
 
-                const controlRightX = 225 + (currentX * 0.4);
-                const controlRightY = 90 + (currentY * 0.4);
+                const controlRightX = 225 + (currentX * 0.5) + (velX * 0.3);
+                const controlRightY = 90 + (currentY * 0.5) + (velY * 0.3);
 
+                // Update Jalur SVG Path Kurva Kain
                 const pathLeftData = `M 45,10 Q ${controlLeftX},${controlLeftY} ${endX - 8},${endY}`;
                 const pathRightData = `M 255,10 Q ${controlRightX},${controlRightY} ${endX + 8},${endY}`;
 
