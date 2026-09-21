@@ -189,67 +189,57 @@
     </header>
 
 
-    <!-- HERO SECTION WITH BLACK BATIK TRANSPARENT ELASTIC LANYARD -->
+    <!-- HERO SECTION WITH SINGLE RESPONSIVE FABRIC LANYARD -->
     <section id="home" class="relative z-10 pt-12 pb-16 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
-        <!-- INTERACTIVE ELASTIC LANYARD CONTAINER -->
+        <!-- INTERACTIVE SINGLE LANYARD CONTAINER -->
         <div id="lanyardContainer" class="hidden lg:block absolute top-4 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[300px] h-[540px]" style="perspective: 1200px;">
             
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" style="z-index: 10;">
                 <defs>
-                    <!-- Pola Batik Hitam Transparan & Elegan -->
-                    <pattern id="batikPattern" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                        <path d="M12 0 L24 12 L12 24 L0 12 Z" fill="#000000" fill-opacity="0.25" stroke="#fb7185" stroke-width="0.75" stroke-opacity="0.35"/>
-                        <circle cx="12" cy="12" r="3" fill="#ffffff" fill-opacity="0.15"/>
+                    <!-- Pola Kain / Batik Lembut Transparan -->
+                    <pattern id="fabricPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <path d="M10 0 L20 10 L10 20 L0 10 Z" fill="#000000" fill-opacity="0.2" stroke="#fb7185" stroke-width="0.5" stroke-opacity="0.3"/>
+                        <circle cx="10" cy="10" r="2" fill="#ffffff" fill-opacity="0.1"/>
                     </pattern>
 
-                    <!-- Gradien Dasar Tali Hitam Karet Elastis -->
-                    <linearGradient id="elasticBlackGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stop-color="#020617" stop-opacity="0.95" />
-                        <stop offset="35%" stop-color="#1e1b4b" stop-opacity="0.85" />
-                        <stop offset="50%" stop-color="#090d16" stop-opacity="0.95" />
-                        <stop offset="75%" stop-color="#310b16" stop-opacity="0.85" />
+                    <!-- Gradien Tekstur Kain Lanyard Hitam Fleksibel -->
+                    <linearGradient id="fabricSingleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#090d16" stop-opacity="0.95" />
+                        <stop offset="40%" stop-color="#1e1b4b" stop-opacity="0.88" />
+                        <stop offset="60%" stop-color="#310b16" stop-opacity="0.88" />
                         <stop offset="100%" stop-color="#020617" stop-opacity="0.95" />
                     </linearGradient>
 
-                    <!-- Filter Bayangan 3D Tali Karet -->
-                    <filter id="lanyardShadow" x="-30%" y="-30%" width="160%" height="160%">
-                        <feDropShadow dx="3" dy="8" stdDeviation="5" flood-color="#000000" flood-opacity="0.7"/>
+                    <!-- Bayangan Lembut Realistis Kain -->
+                    <filter id="fabricShadow" x="-30%" y="-30%" width="160%" height="160%">
+                        <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
                     </filter>
                 </defs>
 
-                <!-- Lapisan Dasar Warna Hitam Karet Elastis -->
-                <path id="fabricStrapLeft" d="M 45,10 Q 75,90 132,175" 
-                      stroke="url(#elasticBlackGrad)" stroke-width="16" stroke-linecap="round" fill="none" 
-                      filter="url(#lanyardShadow)" />
-                <!-- Lapisan Motif Batik Transparan di Atas Tali Kiri -->
-                <path id="fabricStrapLeftBatik" d="M 45,10 Q 75,90 132,175" 
-                      stroke="url(#batikPattern)" stroke-width="15" stroke-linecap="round" fill="none" />
-                <path id="fabricStrapLeftAccent" d="M 45,10 Q 75,90 132,175" 
-                      stroke="#fb7185" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9" />
-
-                <!-- Lapisan Dasar Warna Hitam Karet Elastis Kanan -->
-                <path id="fabricStrapRight" d="M 255,10 Q 225,90 148,175" 
-                      stroke="url(#elasticBlackGrad)" stroke-width="16" stroke-linecap="round" fill="none" 
-                      filter="url(#lanyardShadow)" />
-                <!-- Lapisan Motif Batik Transparan di Atas Tali Kanan -->
-                <path id="fabricStrapRightBatik" d="M 255,10 Q 225,90 148,175" 
-                      stroke="url(#batikPattern)" stroke-width="15" stroke-linecap="round" fill="none" />
-                <path id="fabricStrapRightAccent" d="M 255,10 Q 225,90 148,175" 
-                      stroke="#fb7185" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.9" />
+                <!-- Jalur Tali Tunggal Pusat (Single Strap) -->
+                <path id="singleStrapBase" d="M 150,10 Q 150,90 150,170" 
+                      stroke="url(#fabricSingleGrad)" stroke-width="22" stroke-linecap="round" fill="none" 
+                      filter="url(#fabricShadow)" />
+                <!-- Lapisan Motif Tekstur Kain Transparan -->
+                <path id="singleStrapTexture" d="M 150,10 Q 150,90 150,170" 
+                      stroke="url(#fabricPattern)" stroke-width="20" stroke-linecap="round" fill="none" />
+                <!-- Aksen Garis Tepi Elegan -->
+                <path id="singleStrapEdge" d="M 150,10 Q 150,90 150,170" 
+                      stroke="#fb7185" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.8" />
             </svg>
 
-            <!-- Moveable Hitbox / ID Card Physics Body (Fleksibel & Kenyal) -->
-            <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 175px; left: 140px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
+            <!-- Moveable Hitbox / ID Card Physics Body (Fleksibel & Lentur Seperti Kain) -->
+            <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 170px; left: 150px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
                 
-                <!-- Premium Metal Hardware Clip -->
-                <div id="lanyardHardware" class="w-8 h-11 rounded-md bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-10 relative">
-                    <div class="w-5 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
+                <!-- Premium Metal Hardware Clip (Single Attachment) -->
+                <div id="lanyardHardware" class="w-7 h-10 rounded-md bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-10 relative">
+                    <div class="w-4 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
                     <div class="w-3.5 h-3.5 rounded-full border-2 border-slate-200 bg-slate-950 shadow-inner"></div>
                 </div>
 
                 <!-- 3D Hanging ID Card Frame -->
-                <div id="idCard3D" class="id-card-frame w-64 -mt-2 relative select-none">
+                <div id="idCard3D" class="id-card-frame w-64 -mt-1.5 relative select-none">
                     <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden shadow-inner">
                         
                         <!-- Clip Slot -->
@@ -284,7 +274,7 @@
 
                 <!-- Interactive Hint -->
                 <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-4 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-800 shadow pointer-events-none whitespace-nowrap backdrop-blur-md">
-                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik & Regangkan Tali Batik Karet Ini
+                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik & Goyangkan Tali Kain Ini
                 </p>
             </div>
         </div>
@@ -692,7 +682,7 @@
     </section>
 
 
-    <!-- CONTACTS SECTION (SEJAJAR SECARA VERTICAL DENGAN CARD TERAKHIR) -->
+    <!-- CONTACTS SECTION -->
     <section id="contacts" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative z-10">
         <div class="fade-in-section space-y-12">
             
@@ -708,10 +698,8 @@
                 </p>
             </div>
 
-            <!-- GRID DIBUAT DENGAN ALIGN-ITEMS START DAN KEDUANYA BERUKURAN COL-SPAN-6 AGAR SEJAJAR PERSIS -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                <!-- KOLOM KIRI: DAFTAR CARD KONTAK (WHATSAPP, EMAIL, YOUTUBE, LINKEDIN, INSTAGRAM) -->
                 <div class="lg:col-span-6 space-y-4">
                     <h3 class="heading-font text-lg font-bold text-slate-900 dark:text-slate-100">
                         Kontak Langsung
@@ -773,7 +761,6 @@
                     </a>
                 </div>
 
-                <!-- KOLOM KANAN: FORM KIRIM PESAN WHATSAPP (COL-SPAN-6 AGAR TINGGI & POSISINYA SEJAJAR DENGAN CARD INSTAGRAM DI KIRI) -->
                 <div class="lg:col-span-6 p-6 sm:p-8 rounded-3xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 backdrop-blur-md shadow-lg dark:shadow-2xl space-y-4 transition-colors">
                     <h3 class="heading-font text-lg font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
                         <i class="fa-solid fa-paper-plane text-rose-500"></i>
@@ -823,7 +810,7 @@
 
             <div class="text-xs text-slate-500 dark:text-slate-400 space-y-1 md:text-right">
                 <p class="font-mono text-slate-600 dark:text-slate-300">ra.dtyxofficial@gmail.com</p>
-                <p>©2026 • Crafted Frame By Ra.dtyx</p>
+                <p>©2026 • Crafted Frame By Ra.dtx</p>
             </div>
         </div>
     </footer>
@@ -1275,16 +1262,12 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // ELASTIC RUBBER BATIK LANYARD PHYSICS + DROP BOUNCE ANIMATION
+        // SINGLE FABRIC LANYARD RESPONSIVE PHYSICS (RUBBER & CLOTH SIMULATION)
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
-        const strapLeft = document.getElementById('fabricStrapLeft');
-        const strapLeftBatik = document.getElementById('fabricStrapLeftBatik');
-        const strapLeftAccent = document.getElementById('fabricStrapLeftAccent');
-
-        const strapRight = document.getElementById('fabricStrapRight');
-        const strapRightBatik = document.getElementById('fabricStrapRightBatik');
-        const strapRightAccent = document.getElementById('fabricStrapRightAccent');
+        const singleStrapBase = document.getElementById('singleStrapBase');
+        const singleStrapTexture = document.getElementById('singleStrapTexture');
+        const singleStrapEdge = document.getElementById('singleStrapEdge');
 
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
@@ -1293,8 +1276,8 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
-        const springPower = 0.055;  
-        const frictionPower = 0.74; 
+        const springPower = 0.05;  
+        const frictionPower = 0.72; 
 
         if (lanyardMoveable) {
             lanyardMoveable.addEventListener('pointerdown', (e) => {
@@ -1314,7 +1297,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                const maxStretch = 400; 
+                const maxStretch = 380; 
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
                     dx = (dx / dist) * maxStretch;
@@ -1353,32 +1336,25 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     currentY += velY;
                 }
 
-                let rotY = currentX * 0.18;  
-                let rotX = -currentY * 0.2; 
-                let rotZ = currentX * 0.07;  
+                let rotY = currentX * 0.15;  
+                let rotX = -currentY * 0.15; 
+                let rotZ = currentX * 0.06;  
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
-                const endX = 140 + currentX;
-                const endY = 175 + currentY;
+                const endX = 150 + currentX;
+                const endY = 170 + currentY;
 
-                const controlLeftX = 75 + (currentX * 0.55) + (velX * 0.4);
-                const controlLeftY = 90 + (currentY * 0.55) + (velY * 0.4);
+                // Kurva kuadratik tunggal agar tali kain melengkung lentur secara natural
+                const controlX = 150 + (currentX * 0.5) + (velX * 0.35);
+                const controlY = 90 + (currentY * 0.5) + (velY * 0.35);
 
-                const controlRightX = 225 + (currentX * 0.55) + (velX * 0.4);
-                const controlRightY = 90 + (currentY * 0.55) + (velY * 0.4);
+                const singlePathData = `M 150,10 Q ${controlX},${controlY} ${endX},${endY}`;
 
-                const pathLeftData = `M 45,10 Q ${controlLeftX},${controlLeftY} ${endX - 8},${endY}`;
-                const pathRightData = `M 255,10 Q ${controlRightX},${controlRightY} ${endX + 8},${endY}`;
-
-                if (strapLeft) {
-                    strapLeft.setAttribute('d', pathLeftData);
-                    strapLeftBatik.setAttribute('d', pathLeftData);
-                    strapLeftAccent.setAttribute('d', pathLeftData);
-
-                    strapRight.setAttribute('d', pathRightData);
-                    strapRightBatik.setAttribute('d', pathRightData);
-                    strapRightAccent.setAttribute('d', pathRightData);
+                if (singleStrapBase) {
+                    singleStrapBase.setAttribute('d', singlePathData);
+                    singleStrapTexture.setAttribute('d', singlePathData);
+                    singleStrapEdge.setAttribute('d', singlePathData);
                 }
 
                 requestAnimationFrame(animatePhysicsLoop);
