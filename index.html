@@ -93,27 +93,13 @@
             transform: translateY(0);
         }
 
-        /* LANYARD STRAP & ELASTIC RUBBER PHYSICS */
-        .lanyard-strap-vertical {
-            width: 20px;
-            background: linear-gradient(180deg, #111116 0%, #1a1a24 50%, #0d0d12 100%);
-            border-left: 1px solid rgba(255,255,255,0.12);
-            border-right: 1px solid rgba(0,0,0,0.6);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.85);
-            transform-origin: top center;
-        }
-
+        /* ID Card Base Styling */
         .id-card-frame {
             background: #ffffff;
             border-radius: 18px;
             padding: 8px;
             box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.25);
             transform-style: preserve-3d;
-            cursor: grab;
-            touch-action: none;
-        }
-        .id-card-frame:active {
-            cursor: grabbing;
         }
 
         /* Custom Scrollbar */
@@ -202,59 +188,73 @@
     </header>
 
 
-    <!-- HERO SECTION WITH ELASTIC RUBBER LANYARD -->
-    <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center">
+    <!-- HERO SECTION WITH DYNAMIC V-LANYARD 3D PHYSICS -->
+    <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
-        <!-- INTERACTIVE ELASTIC VERTICAL LANYARD HANGING FROM TOP HEADER -->
-        <div id="lanyardContainer" class="hidden lg:flex flex-col items-center absolute top-0 right-[10%] z-30 pointer-events-auto cursor-grab active:cursor-grabbing">
+        <!-- INTERACTIVE V-SHAPED LANYARD CONTAINER (3D SPACE) -->
+        <div id="lanyardContainer" class="hidden lg:block absolute top-0 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[280px] h-[600px]" style="perspective: 1200px;">
             
-            <div id="lanyardStrap" class="lanyard-strap-vertical transition-all duration-75" style="height: 180px;"></div>
-
-            <!-- Metal Clip -->
-            <div id="lanyardHardware" class="w-7 h-9 rounded-sm bg-gradient-to-b from-slate-300 via-slate-600 to-slate-900 border border-slate-400 shadow-md flex flex-col items-center justify-between py-1 -mt-0.5 z-10">
-                <div class="w-4 h-1 bg-slate-900 rounded-full"></div>
-                <div class="w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-950"></div>
-            </div>
-
-            <!-- 3D Hanging ID Card Frame -->
-            <div id="idCard3D" class="id-card-frame w-64 -mt-1 shadow-2xl relative select-none">
+            <!-- V-Strap SVG Graphics (Acts as the rope/string) -->
+            <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" style="z-index: 10;">
+                <!-- Left Strap -->
+                <line id="strapLeft" x1="40" y1="-20" x2="140" y2="185" stroke="#000000" stroke-width="14" stroke-linecap="round" />
+                <line id="strapLeftInner" x1="40" y1="-20" x2="140" y2="185" stroke="#1a1a24" stroke-width="10" stroke-linecap="round" />
+                <line id="strapLeftAccent" x1="40" y1="-20" x2="140" y2="185" stroke="#9f1239" stroke-width="2" stroke-linecap="round" />
                 
-                <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden">
-                    
-                    <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
+                <!-- Right Strap -->
+                <line id="strapRight" x1="240" y1="-20" x2="140" y2="185" stroke="#000000" stroke-width="14" stroke-linecap="round" />
+                <line id="strapRightInner" x1="240" y1="-20" x2="140" y2="185" stroke="#1a1a24" stroke-width="10" stroke-linecap="round" />
+                <line id="strapRightAccent" x1="240" y1="-20" x2="140" y2="185" stroke="#9f1239" stroke-width="2" stroke-linecap="round" />
+            </svg>
 
-                    <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900 border border-slate-800 relative group">
-                        <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
-                             alt="Aditiya Ramadhani ID Photo" 
-                             onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
-                             class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
-                    </div>
-
-                    <div class="space-y-1 w-full pt-1 text-left">
-                        <h3 class="heading-font font-bold text-sm text-slate-100 tracking-wider">
-                            Aditiya Ramadhani
-                        </h3>
-                        <p class="text-[10px] text-rose-400 font-semibold">
-                            D4 Produksi Film & Televisi
-                        </p>
-                        <p class="text-[9px] text-slate-400 font-medium">
-                            Institut Seni Indonesia Bali
-                        </p>
-                    </div>
-
-                    <div class="w-full pt-2 border-t border-slate-800 flex justify-between items-center text-[8px] text-slate-500 font-mono tracking-widest">
-                        <span>CREW PASS</span>
-                        <span>ISI-BALI-2026</span>
-                    </div>
-
+            <!-- Moveable Hitbox / ID Card Physics Body -->
+            <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 185px; left: 140px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
+                
+                <!-- Metal Clip Connector -->
+                <div id="lanyardHardware" class="w-7 h-10 rounded-md bg-gradient-to-b from-slate-300 via-slate-500 to-slate-900 border border-slate-500 shadow-md flex flex-col items-center justify-between py-1 z-10 relative">
+                    <div class="w-4 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
+                    <div class="w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-950 shadow-inner"></div>
                 </div>
-            </div>
 
-            <!-- Interaction Hint -->
-            <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-3 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1 rounded-full border border-slate-300 dark:border-slate-800 shadow">
-                <i class="fa-solid fa-hand-pointer text-rose-500"></i> Tarik lanyard ke bawah & lepaskan
-            </p>
+                <!-- 3D Hanging ID Card Frame -->
+                <div id="idCard3D" class="id-card-frame w-64 -mt-2 relative select-none">
+                    <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden shadow-inner">
+                        
+                        <!-- Clip Hole -->
+                        <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
+
+                        <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900 border border-slate-800 relative group">
+                            <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
+                                 alt="Aditiya Ramadhani ID Photo" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
+                                 class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
+                        </div>
+
+                        <div class="space-y-1 w-full pt-1 text-left">
+                            <h3 class="heading-font font-bold text-sm text-slate-100 tracking-wider">
+                                Aditiya Ramadhani
+                            </h3>
+                            <p class="text-[10px] text-rose-400 font-semibold">
+                                D4 Produksi Film & Televisi
+                            </p>
+                            <p class="text-[9px] text-slate-400 font-medium">
+                                Institut Seni Indonesia Bali
+                            </p>
+                        </div>
+
+                        <div class="w-full pt-2 border-t border-slate-800 flex justify-between items-center text-[8px] text-slate-500 font-mono tracking-widest">
+                            <span>CREW PASS</span>
+                            <span>ISI-BALI-2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interaction Hint -->
+                <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-4 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-800 shadow pointer-events-none whitespace-nowrap backdrop-blur-md">
+                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Mainkan ID Card (Drag)
+                </p>
+            </div>
         </div>
 
 
@@ -297,7 +297,7 @@
 
             <!-- Mobile View Fallback -->
             <div class="lg:hidden col-span-1 flex flex-col items-center justify-center pt-6">
-                <div class="id-card-frame w-64 bg-white p-2 rounded-2xl shadow-2xl">
+                <div class="id-card-frame w-64 bg-white p-2 rounded-2xl shadow-2xl transform hover:rotate-3 transition-transform duration-500">
                     <div class="bg-black rounded-xl p-4 border border-slate-800 text-white flex flex-col items-center text-center space-y-3">
                         <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900">
                             <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
@@ -839,7 +839,7 @@
         </div>
     </div>
 
-    <!-- LIGHTBOX OVERLAY (For clicking images in the modal) -->
+    <!-- LIGHTBOX OVERLAY -->
     <div id="lightboxOverlay" class="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-8 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300" onclick="closeLightbox(event)">
         <button onclick="closeLightbox(event)" class="absolute top-4 right-4 sm:top-8 sm:right-8 text-slate-400 hover:text-white p-3 rounded-full bg-slate-800/60 hover:bg-rose-600 transition-colors z-[120]">
             <i class="fa-solid fa-xmark text-2xl"></i>
@@ -850,7 +850,7 @@
     </div>
 
 
-    <!-- SCRIPT & ELASTIC RUBBER PHYSICS -->
+    <!-- SCRIPT & 3D PHYSICS -->
     <script>
         const projectsData = [
             {
@@ -1015,6 +1015,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             }
         ];
 
+        // --- RENDER PORTFOLIO ---
         function renderProjects(catFilter = 'all') {
             const container = document.getElementById('projectsGrid');
             container.innerHTML = '';
@@ -1059,7 +1060,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                         </button>
                     </div>
                 `;
-
                 container.appendChild(card);
             });
         }
@@ -1080,7 +1080,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             document.querySelectorAll('.main-tab-btn').forEach(btn => {
                 btn.className = 'main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100';
             });
-
             document.getElementById(`tabContent-${tabKey}`).classList.remove('hidden');
             document.getElementById(`tabBtn-${tabKey}`).className = 'main-tab-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all flex items-center gap-2 bg-gradient-to-r from-rose-600 to-rose-800 text-white shadow-md';
         }
@@ -1089,7 +1088,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         function openLightbox(imgUrl) {
             const overlay = document.getElementById('lightboxOverlay');
             const img = document.getElementById('lightboxImage');
-            
             img.src = imgUrl;
             overlay.classList.remove('opacity-0', 'pointer-events-none');
             img.classList.remove('scale-95');
@@ -1097,17 +1095,12 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         }
 
         function closeLightbox(event) {
-            // Prevent closing if the user actually clicked exactly on the image itself
             if (event && event.target.id === 'lightboxImage') return;
-            
             const overlay = document.getElementById('lightboxOverlay');
             const img = document.getElementById('lightboxImage');
-            
             overlay.classList.add('opacity-0', 'pointer-events-none');
             img.classList.remove('scale-100');
             img.classList.add('scale-95');
-            
-            // Wait for fade out to clear src
             setTimeout(() => { img.src = ''; }, 300);
         }
 
@@ -1145,11 +1138,8 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             if (p.images && p.images.length > 0) {
                 p.images.forEach(imgUrl => {
                     const imgDiv = document.createElement('div');
-                    // Add classes for styling and hover state
                     imgDiv.className = 'h-32 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 cursor-pointer group relative';
-                    // Trigger lightbox on click
                     imgDiv.onclick = () => openLightbox(imgUrl);
-                    
                     imgDiv.innerHTML = `
                         <img src="${imgUrl}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
@@ -1187,6 +1177,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             window.open(`https://wa.me/6285604613503?text=${text}`, '_blank');
         }
 
+        // --- INTRO SEQUENCE ---
         function runIntroSequence() {
             const step1 = document.getElementById('introStep1');
             const step2 = document.getElementById('introStep2');
@@ -1211,53 +1202,138 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             }
         }
 
-        // --- ELASTIC RUBBER LANYARD & DRAG PHYSICS ---
-        const lanyardCard = document.getElementById('lanyardContainer');
-        const lanyardStrap = document.getElementById('lanyardStrap');
-        const idCard3D = document.getElementById('idCard3D');
-        let isDragging = false;
-        let startY = 0;
-        let currentY = 0;
-        const defaultHeight = 180;
 
-        if (lanyardCard) {
-            lanyardCard.addEventListener('pointerdown', (e) => {
-                isDragging = true;
-                startY = e.clientY;
-                lanyardCard.setPointerCapture(e.pointerId);
-                lanyardStrap.style.transition = 'none';
-                idCard3D.style.transition = 'none';
+        // =========================================================================
+        // NEW DYNAMIC V-LANYARD 3D PHYSICS (SPRING ANIMATION)
+        // =========================================================================
+        const lanyardMoveable = document.getElementById('lanyardMoveable');
+        const strapElements = [
+            document.getElementById('strapLeft'),
+            document.getElementById('strapLeftInner'),
+            document.getElementById('strapLeftAccent'),
+            document.getElementById('strapRight'),
+            document.getElementById('strapRightInner'),
+            document.getElementById('strapRightAccent')
+        ];
+
+        let isDraggingLanyard = false;
+        let startMouseX = 0, startMouseY = 0;
+        
+        // Target & Current Position trackers
+        let currentX = 0, currentY = 0;
+        let targetX = 0, targetY = 0;
+        let velX = 0, velY = 0;
+        
+        // Physics variables tuning
+        const springPower = 0.06;   // Determines how strongly it snaps back
+        const frictionPower = 0.82; // Determines how long it swings before stopping
+
+        if (lanyardMoveable) {
+            lanyardMoveable.addEventListener('pointerdown', (e) => {
+                isDraggingLanyard = true;
+                lanyardMoveable.setPointerCapture(e.pointerId);
+                
+                // Calculate offset to ensure smooth picking up from exact click spot
+                startMouseX = e.clientX - targetX;
+                startMouseY = e.clientY - targetY;
+                
+                lanyardMoveable.style.cursor = 'grabbing';
+                velX = 0; velY = 0; // Stop swinging instantly on grab
             });
 
-            lanyardCard.addEventListener('pointermove', (e) => {
-                if (!isDragging) return;
-                const deltaY = e.clientY - startY;
-                if (deltaY > 0) {
-                    currentY = Math.min(deltaY * 0.7, 140);
-                    lanyardStrap.style.height = `${defaultHeight + currentY}px`;
-                    idCard3D.style.transform = `translateY(${currentY}px) rotateX(${currentY * 0.1}deg) scale(${1 + currentY * 0.001})`;
+            lanyardMoveable.addEventListener('pointermove', (e) => {
+                if (!isDraggingLanyard) return;
+                
+                let dx = e.clientX - startMouseX;
+                let dy = e.clientY - startMouseY;
+                
+                // Limit maximum stretch radius so user can't drag it out of screen
+                const maxStretch = 300; 
+                const dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist > maxStretch) {
+                    dx = (dx / dist) * maxStretch;
+                    dy = (dy / dist) * maxStretch;
                 }
+                
+                targetX = dx;
+                targetY = dy;
             });
 
-            const stopDrag = (e) => {
-                if (isDragging) {
-                    isDragging = false;
-                    lanyardStrap.style.transition = 'height 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    idCard3D.style.transition = 'transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-                    lanyardStrap.style.height = `${defaultHeight}px`;
-                    idCard3D.style.transform = `translateY(0px) rotateX(0deg) scale(1)`;
-                }
+            const releaseLanyard = () => {
+                isDraggingLanyard = false;
+                // Once released, target resets to origin (0,0) so the spring physics pulls it back
+                targetX = 0; 
+                targetY = 0;
+                lanyardMoveable.style.cursor = 'grab';
             };
 
-            lanyardCard.addEventListener('pointerup', stopDrag);
-            lanyardCard.addEventListener('pointercancel', stopDrag);
+            lanyardMoveable.addEventListener('pointerup', releaseLanyard);
+            lanyardMoveable.addEventListener('pointercancel', releaseLanyard);
+
+            // 60FPS Physics Engine Loop
+            function animatePhysicsLoop() {
+                if (isDraggingLanyard) {
+                    // Easing follow: smoothly track the mouse (weight feeling)
+                    currentX += (targetX - currentX) * 0.25;
+                    currentY += (targetY - currentY) * 0.25;
+                } else {
+                    // Spring bounce math
+                    let ax = (targetX - currentX) * springPower;
+                    let ay = (targetY - currentY) * springPower;
+                    
+                    velX += ax;
+                    velY += ay;
+                    
+                    velX *= frictionPower;
+                    velY *= frictionPower;
+                    
+                    currentX += velX;
+                    currentY += velY;
+                }
+
+                // Calculate 3D rotations based on X/Y stretch (makes it feel 3-dimensional)
+                let rotY = currentX * 0.12;  // Swing left/right rotates Y axis
+                let rotX = -currentY * 0.15; // Pulling down tilts X axis upwards
+                let rotZ = currentX * 0.04;  // Slight bank/roll on Z axis
+                
+                // Apply Transform to Card
+                lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
+
+                // Dynamically update SVG Line connections to follow the metal clip perfectly
+                // Base anchor of clip is x:140, y:185
+                const anchorX = 140 + currentX;
+                const anchorY = 185 + currentY;
+
+                if (strapElements[0]) {
+                    // Update Left Strap Group
+                    strapElements[0].setAttribute('x2', anchorX);
+                    strapElements[0].setAttribute('y2', anchorY);
+                    strapElements[1].setAttribute('x2', anchorX);
+                    strapElements[1].setAttribute('y2', anchorY);
+                    strapElements[2].setAttribute('x2', anchorX);
+                    strapElements[2].setAttribute('y2', anchorY);
+                    
+                    // Update Right Strap Group
+                    strapElements[3].setAttribute('x2', anchorX);
+                    strapElements[3].setAttribute('y2', anchorY);
+                    strapElements[4].setAttribute('x2', anchorX);
+                    strapElements[4].setAttribute('y2', anchorY);
+                    strapElements[5].setAttribute('x2', anchorX);
+                    strapElements[5].setAttribute('y2', anchorY);
+                }
+
+                requestAnimationFrame(animatePhysicsLoop);
+            }
+            // Start Engine
+            animatePhysicsLoop();
         }
+        // =========================================================================
+
 
         // --- THEME SWITCHER & OBSERVER ---
         const html = document.documentElement;
         const themeIcon = document.getElementById('themeIcon');
         
-        // Define initial correct icon load
         if (html.classList.contains('dark')) {
             themeIcon.className = 'fa-solid fa-sun text-base text-amber-500';
         } else {
