@@ -737,6 +737,18 @@
                         </div>
                     </a>
 
+                    <!-- YOUTUBE CONTACT LINK -->
+                    <a href="https://youtube.com/@portfolioadit?si=lm-1BtdFbUILbyzx" target="_blank" rel="noopener noreferrer"
+                       class="p-4 rounded-2xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 hover:border-red-400 dark:hover:border-red-500 card-glow flex items-center gap-4 transition-all group shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-red-100 dark:bg-red-950 border border-red-200 dark:border-red-500/50 flex items-center justify-center text-red-600 dark:text-red-400 text-xl group-hover:scale-110 transition-transform">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-wider block">YouTube Portfolio</span>
+                            <span class="text-sm font-semibold text-slate-900 dark:text-slate-100">@portfolioadit</span>
+                        </div>
+                    </a>
+
                     <a href="https://www.linkedin.com/in/aditiya-ramadhani-421a24428?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer"
                        class="p-4 rounded-2xl bg-white dark:bg-darkCard border border-slate-200 dark:border-slate-800 hover:border-sky-400 dark:hover:border-sky-500 card-glow flex items-center gap-4 transition-all group shadow-sm">
                         <div class="w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-950 border border-sky-200 dark:border-sky-500/50 flex items-center justify-center text-sky-600 dark:text-sky-400 text-xl group-hover:scale-110 transition-transform">
@@ -1275,12 +1287,10 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
         
-        // Posisi awal di atas layar untuk menciptakan animasi jatuh drop bounce yang kenyal
         let currentX = 0, currentY = -560; 
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
-        // Pengaturan Fisika Karet Elastis (Pegas Kenyal & Lembut)
         const springPower = 0.055;  
         const frictionPower = 0.74; 
 
@@ -1302,7 +1312,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                const maxStretch = 400; // Rentang tarikan fleksibel yang luas
+                const maxStretch = 400; 
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
                     dx = (dx / dist) * maxStretch;
@@ -1341,25 +1351,21 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     currentY += velY;
                 }
 
-                // Kalkulasi Rotasi 3D Perspektif Berdasarkan Gerakan Cursor
                 let rotY = currentX * 0.18;  
                 let rotX = -currentY * 0.2; 
                 let rotZ = currentX * 0.07;  
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
-                // Titik Sambung Bawah Kartu ID
                 const endX = 140 + currentX;
                 const endY = 175 + currentY;
 
-                // Titik Kontrol Kurva Karet Elastis yang Mengikuti Tarikan Kursor
                 const controlLeftX = 75 + (currentX * 0.55) + (velX * 0.4);
                 const controlLeftY = 90 + (currentY * 0.55) + (velY * 0.4);
 
                 const controlRightX = 225 + (currentX * 0.55) + (velX * 0.4);
                 const controlRightY = 90 + (currentY * 0.55) + (velY * 0.4);
 
-                // Update Jalur SVG Path Kurva Karet Tali Batik
                 const pathLeftData = `M 45,10 Q ${controlLeftX},${controlLeftY} ${endX - 8},${endY}`;
                 const pathRightData = `M 255,10 Q ${controlRightX},${controlRightY} ${endX + 8},${endY}`;
 
