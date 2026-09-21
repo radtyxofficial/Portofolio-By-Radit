@@ -188,28 +188,45 @@
     </header>
 
 
-    <!-- HERO SECTION WITH RELATIVE V-LANYARD CONTAINER (NOT CUT OFF) -->
+    <!-- HERO SECTION WITH CURVED 3D FABRIC LANYARD -->
     <section id="home" class="relative z-10 pt-12 pb-16 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
-        <!-- INTERACTIVE ESTHETIC V-SHAPED LANYARD CONTAINER (POSITIONED RELATIVE & ABSOLUTE AT TOP) -->
-        <div id="lanyardContainer" class="hidden lg:block absolute top-6 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[280px] h-[520px]" style="perspective: 1200px;">
+        <!-- INTERACTIVE 3D FABRIC LANYARD CONTAINER -->
+        <div id="lanyardContainer" class="hidden lg:block absolute top-4 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[300px] h-[540px]" style="perspective: 1200px;">
             
-            <!-- Esthetic V-Strap SVG Graphics with Gradient & Glow Effect -->
+            <!-- SVG untuk Tali Kain Lanyard Melengkung Estetik (Quadratic Bezier Curves) -->
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" style="z-index: 10;">
                 <defs>
-                    <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#1e1b4b" />
-                        <stop offset="50%" stop-color="#4c0519" />
-                        <stop offset="100%" stop-color="#0f172a" />
+                    <!-- Gradien Tekstur Kain Lanyard 3D -->
+                    <linearGradient id="fabricGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#0f172a" />
+                        <stop offset="25%" stop-color="#334155" />
+                        <stop offset="50%" stop-color="#881337" />
+                        <stop offset="75%" stop-color="#1e293b" />
+                        <stop offset="100%" stop-color="#020617" />
                     </linearGradient>
+
+                    <!-- Filter Bayangan Tali agar Tampak Mengambang 3D -->
+                    <filter id="lanyardShadow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
+                    </filter>
                 </defs>
-                <!-- Left Strap (Anchor titik atas disesuaikan agar tidak terpotong) -->
-                <line id="strapLeft" x1="40" y1="10" x2="140" y2="175" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
-                <line id="strapLeftAccent" x1="40" y1="10" x2="140" y2="175" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
-                
-                <!-- Right Strap (Anchor titik atas disesuaikan agar tidak terpotong) -->
-                <line id="strapRight" x1="240" y1="10" x2="140" y2="175" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
-                <line id="strapRightAccent" x1="240" y1="10" x2="140" y2="175" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
+
+                <!-- Tali Kiri Kain (Melengkung Fleksibel) -->
+                <path id="fabricStrapLeft" d="M 45,10 Q 75,90 132,175" 
+                      stroke="url(#fabricGradient)" stroke-width="14" stroke-linecap="round" fill="none" 
+                      filter="url(#lanyardShadow)" />
+                <!-- Garis Aksen Tengah Kain Kiri -->
+                <path id="fabricStrapLeftAccent" d="M 45,10 Q 75,90 132,175" 
+                      stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85" />
+
+                <!-- Tali Kanan Kain (Melengkung Fleksibel) -->
+                <path id="fabricStrapRight" d="M 255,10 Q 225,90 148,175" 
+                      stroke="url(#fabricGradient)" stroke-width="14" stroke-linecap="round" fill="none" 
+                      filter="url(#lanyardShadow)" />
+                <!-- Garis Aksen Tengah Kain Kanan -->
+                <path id="fabricStrapRightAccent" d="M 255,10 Q 225,90 148,175" 
+                      stroke="#fb7185" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.85" />
             </svg>
 
             <!-- Moveable Hitbox / ID Card Physics Body -->
@@ -257,7 +274,7 @@
 
                 <!-- Interactive Hint -->
                 <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-4 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-800 shadow pointer-events-none whitespace-nowrap backdrop-blur-md">
-                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik / Geser ID Card Bebas
+                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik & Ayunkan Kain Lanyard Bebas
                 </p>
             </div>
         </div>
@@ -1209,15 +1226,13 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // ESTHETIC V-LANYARD 3D PHYSICS + INITIAL DROP-IN BOUNCE ANIMATION
+        // 3D FABRIC LANYARD CURVE PHYSICS + INITIAL DROP-IN BOUNCE ANIMATION
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
-        const strapElements = [
-            document.getElementById('strapLeft'),
-            document.getElementById('strapLeftAccent'),
-            document.getElementById('strapRight'),
-            document.getElementById('strapRightAccent')
-        ];
+        const strapLeft = document.getElementById('fabricStrapLeft');
+        const strapLeftAccent = document.getElementById('fabricStrapLeftAccent');
+        const strapRight = document.getElementById('fabricStrapRight');
+        const strapRightAccent = document.getElementById('fabricStrapRightAccent');
 
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
@@ -1227,9 +1242,9 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
-        // Pengaturan Fisika Pegas yang Fleksibel & Responsif
-        const springPower = 0.05;  
-        const frictionPower = 0.79; 
+        // Pengaturan Fisika Pegas Kain yang Fleksibel & Lembut
+        const springPower = 0.048;  
+        const frictionPower = 0.78; 
 
         if (lanyardMoveable) {
             lanyardMoveable.addEventListener('pointerdown', (e) => {
@@ -1249,7 +1264,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                const maxStretch = 320; 
+                const maxStretch = 340; 
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
                     dx = (dx / dist) * maxStretch;
@@ -1270,7 +1285,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             lanyardMoveable.addEventListener('pointerup', releaseLanyard);
             lanyardMoveable.addEventListener('pointercancel', releaseLanyard);
 
-            // 60FPS Physics Engine Loop dengan Animasi Jatuh Awal
+            // 60FPS Physics Engine Loop dengan Simulasi Kurva Kain Melengkung Dinamis
             function animatePhysicsLoop() {
                 if (isDraggingLanyard) {
                     currentX += (targetX - currentX) * 0.25;
@@ -1296,19 +1311,26 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
-                // Update Posisi Tali V-Lanyard secara dinamis mengikuti klip kartu (Anchor Y = 175)
-                const anchorX = 140 + currentX;
-                const anchorY = 175 + currentY;
+                // Titik Sambung Bawah Tali Mengikuti Posisi Kartu ID secara Fleksibel
+                const endX = 140 + currentX;
+                const endY = 175 + currentY;
 
-                if (strapElements[0]) {
-                    strapElements[0].setAttribute('x2', anchorX);
-                    strapElements[0].setAttribute('y2', anchorY);
-                    strapElements[1].setAttribute('x2', anchorX);
-                    strapElements[1].setAttribute('y2', anchorY);
-                    strapElements[2].setAttribute('x2', anchorX);
-                    strapElements[2].setAttribute('y2', anchorY);
-                    strapElements[3].setAttribute('x2', anchorX);
-                    strapElements[3].setAttribute('y2', anchorY);
+                // Titik Kontrol Lengkungan (Control Points) untuk Efek Kain yang Melengkung Alami
+                const controlLeftX = 75 + (currentX * 0.4);
+                const controlLeftY = 90 + (currentY * 0.4);
+
+                const controlRightX = 225 + (currentX * 0.4);
+                const controlRightY = 90 + (currentY * 0.4);
+
+                // Update Path Kurva Kiri & Kanan SVG
+                const pathLeftData = `M 45,10 Q ${controlLeftX},${controlLeftY} ${endX - 8},${endY}`;
+                const pathRightData = `M 255,10 Q ${controlRightX},${controlRightY} ${endX + 8},${endY}`;
+
+                if (strapLeft) {
+                    strapLeft.setAttribute('d', pathLeftData);
+                    strapLeftAccent.setAttribute('d', pathLeftData);
+                    strapRight.setAttribute('d', pathRightData);
+                    strapRightAccent.setAttribute('d', pathRightData);
                 }
 
                 requestAnimationFrame(animatePhysicsLoop);
