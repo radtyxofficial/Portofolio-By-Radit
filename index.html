@@ -188,7 +188,7 @@
     </header>
 
 
-    <!-- HERO SECTION WITH DYNAMIC V-LANYARD 3D PHYSICS -->
+    <!-- HERO SECTION WITH DYNAMIC V-LANYARD 3D DROP-IN PHYSICS -->
     <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
         <!-- INTERACTIVE V-SHAPED LANYARD CONTAINER (3D SPACE) -->
@@ -1204,7 +1204,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // NEW DYNAMIC V-LANYARD 3D PHYSICS (SPRING ANIMATION)
+        // DYNAMIC V-LANYARD 3D PHYSICS + INITIAL DROP-IN ANIMATION
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
         const strapElements = [
@@ -1219,26 +1219,25 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
         
-        // Target & Current Position trackers
-        let currentX = 0, currentY = 0;
+        // Target & Current Position trackers with Initial Drop-in Offset
+        let currentX = 0, currentY = -350; // Start high up for drop animation
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
         // Physics variables tuning
-        const springPower = 0.06;   // Determines how strongly it snaps back
-        const frictionPower = 0.82; // Determines how long it swings before stopping
+        const springPower = 0.055;  
+        const frictionPower = 0.81; 
 
         if (lanyardMoveable) {
             lanyardMoveable.addEventListener('pointerdown', (e) => {
                 isDraggingLanyard = true;
                 lanyardMoveable.setPointerCapture(e.pointerId);
                 
-                // Calculate offset to ensure smooth picking up from exact click spot
                 startMouseX = e.clientX - targetX;
                 startMouseY = e.clientY - targetY;
                 
                 lanyardMoveable.style.cursor = 'grabbing';
-                velX = 0; velY = 0; // Stop swinging instantly on grab
+                velX = 0; velY = 0;
             });
 
             lanyardMoveable.addEventListener('pointermove', (e) => {
@@ -1247,7 +1246,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                // Limit maximum stretch radius so user can't drag it out of screen
                 const maxStretch = 300; 
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
@@ -1261,7 +1259,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
             const releaseLanyard = () => {
                 isDraggingLanyard = false;
-                // Once released, target resets to origin (0,0) so the spring physics pulls it back
                 targetX = 0; 
                 targetY = 0;
                 lanyardMoveable.style.cursor = 'grab';
@@ -1270,14 +1267,12 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             lanyardMoveable.addEventListener('pointerup', releaseLanyard);
             lanyardMoveable.addEventListener('pointercancel', releaseLanyard);
 
-            // 60FPS Physics Engine Loop
+            // 60FPS Physics Engine Loop with Drop-in effect
             function animatePhysicsLoop() {
                 if (isDraggingLanyard) {
-                    // Easing follow: smoothly track the mouse (weight feeling)
                     currentX += (targetX - currentX) * 0.25;
                     currentY += (targetY - currentY) * 0.25;
                 } else {
-                    // Spring bounce math
                     let ax = (targetX - currentX) * springPower;
                     let ay = (targetY - currentY) * springPower;
                     
@@ -1291,21 +1286,16 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     currentY += velY;
                 }
 
-                // Calculate 3D rotations based on X/Y stretch (makes it feel 3-dimensional)
-                let rotY = currentX * 0.12;  // Swing left/right rotates Y axis
-                let rotX = -currentY * 0.15; // Pulling down tilts X axis upwards
-                let rotZ = currentX * 0.04;  // Slight bank/roll on Z axis
+                let rotY = currentX * 0.12;  
+                let rotX = -currentY * 0.15; 
+                let rotZ = currentX * 0.04;  
                 
-                // Apply Transform to Card
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
-                // Dynamically update SVG Line connections to follow the metal clip perfectly
-                // Base anchor of clip is x:140, y:185
                 const anchorX = 140 + currentX;
                 const anchorY = 185 + currentY;
 
                 if (strapElements[0]) {
-                    // Update Left Strap Group
                     strapElements[0].setAttribute('x2', anchorX);
                     strapElements[0].setAttribute('y2', anchorY);
                     strapElements[1].setAttribute('x2', anchorX);
@@ -1313,7 +1303,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     strapElements[2].setAttribute('x2', anchorX);
                     strapElements[2].setAttribute('y2', anchorY);
                     
-                    // Update Right Strap Group
                     strapElements[3].setAttribute('x2', anchorX);
                     strapElements[3].setAttribute('y2', anchorY);
                     strapElements[4].setAttribute('x2', anchorX);
@@ -1324,7 +1313,6 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
                 requestAnimationFrame(animatePhysicsLoop);
             }
-            // Start Engine
             animatePhysicsLoop();
         }
         // =========================================================================
