@@ -188,14 +188,14 @@
     </header>
 
 
-    <!-- HERO SECTION WITH ESTHETIC V-LANYARD 3D DROP-IN PHYSICS -->
-    <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
+    <!-- HERO SECTION WITH RELATIVE V-LANYARD CONTAINER (NOT CUT OFF) -->
+    <section id="home" class="relative z-10 pt-12 pb-16 lg:pt-20 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
-        <!-- INTERACTIVE ESTHETIC V-SHAPED LANYARD CONTAINER (3D SPACE) -->
-        <div id="lanyardContainer" class="hidden lg:block absolute top-0 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[280px] h-[600px]" style="perspective: 1200px;">
+        <!-- INTERACTIVE ESTHETIC V-SHAPED LANYARD CONTAINER (POSITIONED RELATIVE & ABSOLUTE AT TOP) -->
+        <div id="lanyardContainer" class="hidden lg:block absolute top-6 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[280px] h-[520px]" style="perspective: 1200px;">
             
             <!-- Esthetic V-Strap SVG Graphics with Gradient & Glow Effect -->
-            <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" style="z-index: 10;">
+            <svg class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" style="z-index: 10;">
                 <defs>
                     <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#1e1b4b" />
@@ -203,17 +203,17 @@
                         <stop offset="100%" stop-color="#0f172a" />
                     </linearGradient>
                 </defs>
-                <!-- Left Strap -->
-                <line id="strapLeft" x1="40" y1="-20" x2="140" y2="185" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
-                <line id="strapLeftAccent" x1="40" y1="-20" x2="140" y2="185" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
+                <!-- Left Strap (Anchor titik atas disesuaikan agar tidak terpotong) -->
+                <line id="strapLeft" x1="40" y1="10" x2="140" y2="175" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
+                <line id="strapLeftAccent" x1="40" y1="10" x2="140" y2="175" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
                 
-                <!-- Right Strap -->
-                <line id="strapRight" x1="240" y1="-20" x2="140" y2="185" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
-                <line id="strapRightAccent" x1="240" y1="-20" x2="140" y2="185" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
+                <!-- Right Strap (Anchor titik atas disesuaikan agar tidak terpotong) -->
+                <line id="strapRight" x1="240" y1="10" x2="140" y2="175" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
+                <line id="strapRightAccent" x1="240" y1="10" x2="140" y2="175" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
             </svg>
 
             <!-- Moveable Hitbox / ID Card Physics Body -->
-            <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 185px; left: 140px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
+            <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 175px; left: 140px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
                 
                 <!-- Premium Metal Hardware Clip -->
                 <div id="lanyardHardware" class="w-8 h-11 rounded-md bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-10 relative">
@@ -1223,7 +1223,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
         let startMouseX = 0, startMouseY = 0;
         
         // Mulai posisi Y di atas layar untuk menciptakan efek jatuh (drop-in)
-        let currentX = 0, currentY = -400; 
+        let currentX = 0, currentY = -450; 
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
@@ -1296,9 +1296,9 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
-                // Update Posisi Tali V-Lanyard secara dinamis mengikuti klip kartu
+                // Update Posisi Tali V-Lanyard secara dinamis mengikuti klip kartu (Anchor Y = 175)
                 const anchorX = 140 + currentX;
-                const anchorY = 185 + currentY;
+                const anchorY = 175 + currentY;
 
                 if (strapElements[0]) {
                     strapElements[0].setAttribute('x2', anchorX);
