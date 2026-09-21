@@ -188,39 +188,44 @@
     </header>
 
 
-    <!-- HERO SECTION WITH DYNAMIC V-LANYARD 3D DROP-IN PHYSICS -->
+    <!-- HERO SECTION WITH ESTHETIC V-LANYARD 3D DROP-IN PHYSICS -->
     <section id="home" class="relative z-10 pt-8 pb-16 lg:pt-16 lg:pb-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto min-h-[calc(100vh-80px)] flex items-center overflow-visible">
         
-        <!-- INTERACTIVE V-SHAPED LANYARD CONTAINER (3D SPACE) -->
+        <!-- INTERACTIVE ESTHETIC V-SHAPED LANYARD CONTAINER (3D SPACE) -->
         <div id="lanyardContainer" class="hidden lg:block absolute top-0 right-[2%] xl:right-[5%] z-30 pointer-events-none w-[280px] h-[600px]" style="perspective: 1200px;">
             
-            <!-- V-Strap SVG Graphics (Acts as the rope/string) -->
+            <!-- Esthetic V-Strap SVG Graphics with Gradient & Glow Effect -->
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none" style="z-index: 10;">
+                <defs>
+                    <linearGradient id="lanyardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#1e1b4b" />
+                        <stop offset="50%" stop-color="#4c0519" />
+                        <stop offset="100%" stop-color="#0f172a" />
+                    </linearGradient>
+                </defs>
                 <!-- Left Strap -->
-                <line id="strapLeft" x1="40" y1="-20" x2="140" y2="185" stroke="#000000" stroke-width="14" stroke-linecap="round" />
-                <line id="strapLeftInner" x1="40" y1="-20" x2="140" y2="185" stroke="#1a1a24" stroke-width="10" stroke-linecap="round" />
-                <line id="strapLeftAccent" x1="40" y1="-20" x2="140" y2="185" stroke="#9f1239" stroke-width="2" stroke-linecap="round" />
+                <line id="strapLeft" x1="40" y1="-20" x2="140" y2="185" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
+                <line id="strapLeftAccent" x1="40" y1="-20" x2="140" y2="185" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
                 
                 <!-- Right Strap -->
-                <line id="strapRight" x1="240" y1="-20" x2="140" y2="185" stroke="#000000" stroke-width="14" stroke-linecap="round" />
-                <line id="strapRightInner" x1="240" y1="-20" x2="140" y2="185" stroke="#1a1a24" stroke-width="10" stroke-linecap="round" />
-                <line id="strapRightAccent" x1="240" y1="-20" x2="140" y2="185" stroke="#9f1239" stroke-width="2" stroke-linecap="round" />
+                <line id="strapRight" x1="240" y1="-20" x2="140" y2="185" stroke="url(#lanyardGrad)" stroke-width="12" stroke-linecap="round" />
+                <line id="strapRightAccent" x1="240" y1="-20" x2="140" y2="185" stroke="#f43f5e" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="6 4" />
             </svg>
 
             <!-- Moveable Hitbox / ID Card Physics Body -->
             <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 185px; left: 140px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
                 
-                <!-- Metal Clip Connector -->
-                <div id="lanyardHardware" class="w-7 h-10 rounded-md bg-gradient-to-b from-slate-300 via-slate-500 to-slate-900 border border-slate-500 shadow-md flex flex-col items-center justify-between py-1 z-10 relative">
-                    <div class="w-4 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
-                    <div class="w-3 h-3 rounded-full border-2 border-slate-300 bg-slate-950 shadow-inner"></div>
+                <!-- Premium Metal Hardware Clip -->
+                <div id="lanyardHardware" class="w-8 h-11 rounded-md bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-10 relative">
+                    <div class="w-5 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
+                    <div class="w-3.5 h-3.5 rounded-full border-2 border-slate-200 bg-slate-950 shadow-inner"></div>
                 </div>
 
                 <!-- 3D Hanging ID Card Frame -->
                 <div id="idCard3D" class="id-card-frame w-64 -mt-2 relative select-none">
                     <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden shadow-inner">
                         
-                        <!-- Clip Hole -->
+                        <!-- Clip Slot -->
                         <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
 
                         <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900 border border-slate-800 relative group">
@@ -250,9 +255,9 @@
                     </div>
                 </div>
 
-                <!-- Interaction Hint -->
+                <!-- Interactive Hint -->
                 <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-4 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-800 shadow pointer-events-none whitespace-nowrap backdrop-blur-md">
-                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Mainkan ID Card (Drag)
+                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik / Geser ID Card Bebas
                 </p>
             </div>
         </div>
@@ -1204,29 +1209,27 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // DYNAMIC V-LANYARD 3D PHYSICS + INITIAL DROP-IN ANIMATION
+        // ESTHETIC V-LANYARD 3D PHYSICS + INITIAL DROP-IN BOUNCE ANIMATION
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
         const strapElements = [
             document.getElementById('strapLeft'),
-            document.getElementById('strapLeftInner'),
             document.getElementById('strapLeftAccent'),
             document.getElementById('strapRight'),
-            document.getElementById('strapRightInner'),
             document.getElementById('strapRightAccent')
         ];
 
         let isDraggingLanyard = false;
         let startMouseX = 0, startMouseY = 0;
         
-        // Target & Current Position trackers with Initial Drop-in Offset
-        let currentX = 0, currentY = -350; // Start high up for drop animation
+        // Mulai posisi Y di atas layar untuk menciptakan efek jatuh (drop-in)
+        let currentX = 0, currentY = -400; 
         let targetX = 0, targetY = 0;
         let velX = 0, velY = 0;
         
-        // Physics variables tuning
-        const springPower = 0.055;  
-        const frictionPower = 0.81; 
+        // Pengaturan Fisika Pegas yang Fleksibel & Responsif
+        const springPower = 0.05;  
+        const frictionPower = 0.79; 
 
         if (lanyardMoveable) {
             lanyardMoveable.addEventListener('pointerdown', (e) => {
@@ -1246,7 +1249,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 let dx = e.clientX - startMouseX;
                 let dy = e.clientY - startMouseY;
                 
-                const maxStretch = 300; 
+                const maxStretch = 320; 
                 const dist = Math.sqrt(dx*dx + dy*dy);
                 if (dist > maxStretch) {
                     dx = (dx / dist) * maxStretch;
@@ -1267,7 +1270,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             lanyardMoveable.addEventListener('pointerup', releaseLanyard);
             lanyardMoveable.addEventListener('pointercancel', releaseLanyard);
 
-            // 60FPS Physics Engine Loop with Drop-in effect
+            // 60FPS Physics Engine Loop dengan Animasi Jatuh Awal
             function animatePhysicsLoop() {
                 if (isDraggingLanyard) {
                     currentX += (targetX - currentX) * 0.25;
@@ -1286,12 +1289,14 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     currentY += velY;
                 }
 
-                let rotY = currentX * 0.12;  
-                let rotX = -currentY * 0.15; 
-                let rotZ = currentX * 0.04;  
+                // Kalkulasi Rotasi Perspektif 3D Berdasarkan Pergerakan Kursor
+                let rotY = currentX * 0.14;  
+                let rotX = -currentY * 0.16; 
+                let rotZ = currentX * 0.05;  
                 
                 lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
 
+                // Update Posisi Tali V-Lanyard secara dinamis mengikuti klip kartu
                 const anchorX = 140 + currentX;
                 const anchorY = 185 + currentY;
 
@@ -1302,13 +1307,8 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                     strapElements[1].setAttribute('y2', anchorY);
                     strapElements[2].setAttribute('x2', anchorX);
                     strapElements[2].setAttribute('y2', anchorY);
-                    
                     strapElements[3].setAttribute('x2', anchorX);
                     strapElements[3].setAttribute('y2', anchorY);
-                    strapElements[4].setAttribute('x2', anchorX);
-                    strapElements[4].setAttribute('y2', anchorY);
-                    strapElements[5].setAttribute('x2', anchorX);
-                    strapElements[5].setAttribute('y2', anchorY);
                 }
 
                 requestAnimationFrame(animatePhysicsLoop);
