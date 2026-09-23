@@ -93,22 +93,13 @@
             transform: translateY(0);
         }
 
-        /* Modern Glassmorphism ID Card Base Styling */
-        .modern-id-card {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.25), 0 18px 36px -18px rgba(0, 0, 0, 0.3);
-            border-radius: 20px;
-            padding: 10px;
+        /* ID Card Base Styling */
+        .id-card-frame {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 8px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.25);
             transform-style: preserve-3d;
-        }
-        
-        .dark .modern-id-card {
-            background: rgba(15, 20, 30, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.5), 0 18px 36px -18px rgba(0, 0, 0, 0.4);
         }
 
         /* Custom Scrollbar */
@@ -206,115 +197,84 @@
             
             <svg class="absolute top-0 left-0 w-full h-full pointer-events-none overflow-visible" style="z-index: 10;">
                 <defs>
+                    <!-- Pola Kain / Batik Lembut Transparan -->
                     <pattern id="fabricPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
                         <path d="M10 0 L20 10 L10 20 L0 10 Z" fill="#000000" fill-opacity="0.2" stroke="#fb7185" stroke-width="0.5" stroke-opacity="0.3"/>
                         <circle cx="10" cy="10" r="2" fill="#ffffff" fill-opacity="0.1"/>
                     </pattern>
+
+                    <!-- Gradien Tekstur Kain Lanyard Hitam Fleksibel -->
                     <linearGradient id="fabricSingleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stop-color="#090d16" stop-opacity="0.95" />
                         <stop offset="40%" stop-color="#1e1b4b" stop-opacity="0.88" />
                         <stop offset="60%" stop-color="#310b16" stop-opacity="0.88" />
                         <stop offset="100%" stop-color="#020617" stop-opacity="0.95" />
                     </linearGradient>
+
+                    <!-- Bayangan Lembut Realistis Kain -->
                     <filter id="fabricShadow" x="-30%" y="-30%" width="160%" height="160%">
                         <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.6"/>
                     </filter>
                 </defs>
 
+                <!-- Jalur Tali Tunggal Pusat (Single Strap) -->
                 <path id="singleStrapBase" d="M 150,10 Q 150,90 150,170" 
                       stroke="url(#fabricSingleGrad)" stroke-width="22" stroke-linecap="round" fill="none" 
                       filter="url(#fabricShadow)" />
+                <!-- Lapisan Motif Tekstur Kain Transparan -->
                 <path id="singleStrapTexture" d="M 150,10 Q 150,90 150,170" 
                       stroke="url(#fabricPattern)" stroke-width="20" stroke-linecap="round" fill="none" />
+                <!-- Aksen Garis Tepi Elegan -->
                 <path id="singleStrapEdge" d="M 150,10 Q 150,90 150,170" 
                       stroke="#fb7185" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.8" />
             </svg>
 
-            <!-- Moveable Hitbox / ID Card Physics Body -->
+            <!-- Moveable Hitbox / ID Card Physics Body (Fleksibel & Lentur Seperti Kain) -->
             <div id="lanyardMoveable" class="absolute flex flex-col items-center pointer-events-auto cursor-grab active:cursor-grabbing" style="top: 170px; left: 150px; transform: translateX(-50%); z-index: 20; transform-style: preserve-3d; transform-origin: top center;">
                 
-                <!-- Premium Metal Hardware Clip -->
-                <div id="lanyardHardware" class="w-6 h-9 rounded-md bg-gradient-to-b from-slate-300 via-slate-400 to-slate-700 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-20 relative">
-                    <div class="w-3.5 h-1 bg-slate-900 rounded-full shadow-inner opacity-80"></div>
-                    <div class="w-3 h-3 rounded-full border-[1.5px] border-slate-300 bg-slate-800 shadow-inner"></div>
+                <!-- Premium Metal Hardware Clip (Single Attachment) -->
+                <div id="lanyardHardware" class="w-7 h-10 rounded-md bg-gradient-to-b from-slate-200 via-slate-400 to-slate-800 border border-slate-400 shadow-xl flex flex-col items-center justify-between py-1 z-10 relative">
+                    <div class="w-4 h-1.5 bg-slate-900 rounded-full shadow-inner"></div>
+                    <div class="w-3.5 h-3.5 rounded-full border-2 border-slate-200 bg-slate-950 shadow-inner"></div>
                 </div>
 
-                <!-- 3D DESAIN ID CARD MODERN CLEAN -->
-                <div id="idCard3D" class="modern-id-card w-64 -mt-2 relative select-none">
-                    
-                    <!-- Inner Card Body -->
-                    <div class="w-full h-full bg-white dark:bg-[#0c111c] rounded-xl overflow-hidden flex flex-col relative border border-slate-100 dark:border-slate-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.03)] dark:shadow-[inset_0_0_20px_rgba(255,255,255,0.02)]">
+                <!-- 3D Hanging ID Card Frame -->
+                <div id="idCard3D" class="id-card-frame w-64 -mt-1.5 relative select-none">
+                    <div class="bg-black rounded-xl p-3 border border-slate-800 text-white flex flex-col items-center text-center space-y-3 relative overflow-hidden shadow-inner">
                         
-                        <!-- Top Ribbon Banner -->
-                        <div class="bg-gradient-to-r from-rose-700 to-rose-600 h-12 w-full flex flex-col justify-center px-5 relative overflow-hidden">
-                            <!-- Slot bolongan ID -->
-                            <div class="absolute top-1.5 left-1/2 -translate-x-1/2 w-10 h-1.5 rounded-full bg-black/30 shadow-inner"></div>
-                            
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[10px] font-bold text-white tracking-[0.25em] uppercase">Filmmaker</span>
-                                <i class="fa-solid fa-clapperboard text-white/50 text-sm"></i>
-                            </div>
+                        <!-- Clip Slot -->
+                        <div class="w-8 h-2 rounded-full bg-slate-900 border border-slate-700 -mt-1 mb-1"></div>
+
+                        <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900 border border-slate-800 relative group">
+                            <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
+                                 alt="Aditiya Ramadhani ID Photo" 
+                                 onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
+                                 class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent"></div>
                         </div>
 
-                        <!-- Main Content -->
-                        <div class="px-5 pb-5 pt-6 flex flex-col items-center relative">
-                            
-                            <!-- Profile Photo -->
-                            <div class="w-28 h-28 rounded-full overflow-hidden border-[5px] border-white dark:border-[#0c111c] shadow-lg -mt-14 relative z-10 bg-slate-100 flex items-center justify-center">
-                                <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
-                                     alt="Aditiya Ramadhani ID Photo" 
-                                     onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'"
-                                     class="w-full h-full object-cover filter contrast-110" />
-                            </div>
-                            
-                            <!-- Name & Role -->
-                            <div class="text-center mt-3 w-full space-y-0.5">
-                                <h3 class="heading-font font-bold text-xl text-slate-900 dark:text-white tracking-tight">Aditiya Ramadhani</h3>
-                                <p class="text-[11px] font-bold text-rose-500 uppercase tracking-widest">Director & ScriptWriter</p>
-                            </div>
-                            
-                            <!-- Info Grid -->
-                            <div class="w-full mt-5 grid grid-cols-2 gap-2 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800/80">
-                                <div class="text-left space-y-0.5">
-                                    <p class="text-[8px] text-slate-400 uppercase font-semibold tracking-wider">Institution</p>
-                                    <p class="text-[10px] font-extrabold text-slate-800 dark:text-slate-200">ISI Bali</p>
-                                </div>
-                                <div class="text-right space-y-0.5">
-                                    <p class="text-[8px] text-slate-400 uppercase font-semibold tracking-wider">Access</p>
-                                    <p class="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400">ALL AREAS</p>
-                                </div>
-                            </div>
-                            
-                            <!-- Aesthetic Barcode Element -->
-                            <div class="w-full mt-4 flex flex-col items-center opacity-80 dark:opacity-90">
-                                <div class="flex gap-[2px] h-7 w-full justify-center opacity-70 items-end">
-                                    <!-- Random varied width bars to simulate barcode -->
-                                    <div class="w-1 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-0.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-1.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-0.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-[3px] h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-0.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-2 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-1 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-[2.5px] h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-0.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-1.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-1 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-2 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-0.5 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                    <div class="w-1 h-full bg-slate-900 dark:bg-slate-200"></div>
-                                </div>
-                                <p class="text-[9px] tracking-[0.25em] font-mono text-slate-500 dark:text-slate-400 mt-1.5 font-semibold">AR-2026-ISB</p>
-                            </div>
+                        <div class="space-y-1 w-full pt-1 text-left">
+                            <h3 class="heading-font font-bold text-sm text-slate-100 tracking-wider">
+                                Aditiya Ramadhani
+                            </h3>
+                            <p class="text-[10px] text-rose-400 font-semibold">
+                                D4 Produksi Film & Televisi
+                            </p>
+                            <p class="text-[9px] text-slate-400 font-medium">
+                                Institut Seni Indonesia Bali
+                            </p>
+                        </div>
 
+                        <div class="w-full pt-2 border-t border-slate-800 flex justify-between items-center text-[8px] text-slate-500 font-mono tracking-widest">
+                            <span>CREW PASS</span>
+                            <span>ISI-BALI-2026</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Interactive Hint -->
                 <p class="text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-4 flex items-center gap-1.5 animate-bounce bg-white/80 dark:bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-800 shadow pointer-events-none whitespace-nowrap backdrop-blur-md">
-                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik & Goyangkan Badge Ini
+                    <i class="fa-solid fa-arrows-up-down-left-right text-rose-500 text-xs"></i> Tarik & Goyangkan Tali Kain Ini
                 </p>
             </div>
         </div>
@@ -355,36 +315,18 @@
                 </div>
             </div>
 
-            <!-- TAMPILAN KARTU VERSI MOBILE (Sama dengan desain PC namun Statis) -->
             <div class="lg:hidden col-span-1 flex flex-col items-center justify-center pt-6">
-                <div class="modern-id-card w-64 shadow-2xl transform hover:-translate-y-2 transition-transform duration-500">
-                    <div class="w-full h-full bg-white dark:bg-[#0c111c] rounded-xl overflow-hidden flex flex-col relative border border-slate-100 dark:border-slate-800 shadow-inner">
-                        <div class="bg-gradient-to-r from-rose-700 to-rose-600 h-12 w-full flex flex-col justify-center px-5">
-                            <div class="flex items-center justify-between mt-1">
-                                <span class="text-[10px] font-bold text-white tracking-[0.25em] uppercase">Filmmaker</span>
-                                <i class="fa-solid fa-clapperboard text-white/50 text-sm"></i>
-                            </div>
+                <div class="id-card-frame w-64 bg-white p-2 rounded-2xl shadow-2xl transform hover:rotate-3 transition-transform duration-500">
+                    <div class="bg-black rounded-xl p-4 border border-slate-800 text-white flex flex-col items-center text-center space-y-3">
+                        <div class="w-full aspect-[4/5] rounded-lg overflow-hidden bg-slate-900">
+                            <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
+                                 alt="Aditiya Ramadhani ID Photo" 
+                                 class="w-full h-full object-cover filter grayscale contrast-125" />
                         </div>
-                        <div class="px-5 pb-5 pt-6 flex flex-col items-center relative">
-                            <div class="w-28 h-28 rounded-full overflow-hidden border-[5px] border-white dark:border-[#0c111c] shadow-lg -mt-14 relative z-10 bg-slate-100 flex items-center justify-center">
-                                <img src="https://drive.google.com/thumbnail?id=1f3q0UsD8n8SmJZgEfKTRt5cxClUeYYlL&sz=w600" 
-                                     alt="Aditiya Ramadhani ID Photo" 
-                                     class="w-full h-full object-cover filter contrast-110" />
-                            </div>
-                            <div class="text-center mt-3 w-full space-y-0.5">
-                                <h3 class="heading-font font-bold text-xl text-slate-900 dark:text-white tracking-tight">Aditiya Ramadhani</h3>
-                                <p class="text-[11px] font-bold text-rose-500 uppercase tracking-widest">Director & ScriptWriter</p>
-                            </div>
-                            <div class="w-full mt-5 grid grid-cols-2 gap-2 bg-slate-50 dark:bg-slate-900/60 p-3 rounded-xl border border-slate-100 dark:border-slate-800/80">
-                                <div class="text-left space-y-0.5">
-                                    <p class="text-[8px] text-slate-400 uppercase font-semibold tracking-wider">Institution</p>
-                                    <p class="text-[10px] font-extrabold text-slate-800 dark:text-slate-200">ISI Bali</p>
-                                </div>
-                                <div class="text-right space-y-0.5">
-                                    <p class="text-[8px] text-slate-400 uppercase font-semibold tracking-wider">Access</p>
-                                    <p class="text-[10px] font-extrabold text-emerald-600 dark:text-emerald-400">ALL AREAS</p>
-                                </div>
-                            </div>
+                        <div class="text-left w-full space-y-1">
+                            <h3 class="font-bold text-sm text-white">Aditiya Ramadhani</h3>
+                            <p class="text-xs text-rose-400">D4 Produksi Film & Televisi</p>
+                            <p class="text-[10px] text-slate-400">Institut Seni Indonesia Bali</p>
                         </div>
                     </div>
                 </div>
@@ -417,7 +359,7 @@
                 </a>
             </div>
 
-            <!-- CONTAINER VIDEO YOUTUBE MENGGUNAKAN PADDING-BOTTOM -->
+            <!-- CONTAINER VIDEO DIPERBARUI MENGGUNAKAN YOUTUBE EMBED -->
             <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="w-full rounded-2xl bg-black border border-slate-300 dark:border-slate-800 shadow-inner group">
                 <iframe src="https://www.youtube.com/embed/aqjgW0BcmGo" 
                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
@@ -895,6 +837,7 @@
 
             <div class="p-6 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed transition-colors">
                 
+                <!-- CONTAINER VIDEO MODAL JUGA MENGGUNAKAN PADDING-BOTTOM 16:9 YANG KETAT -->
                 <div id="modalVideoSection" class="hidden space-y-2">
                     <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-play-circle text-rose-500"></i>
@@ -1332,7 +1275,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
 
 
         // =========================================================================
-        // SINGLE FABRIC LANYARD RESPONSIVE PHYSICS
+        // SINGLE FABRIC LANYARD RESPONSIVE PHYSICS (RUBBER & CLOTH SIMULATION)
         // =========================================================================
         const lanyardMoveable = document.getElementById('lanyardMoveable');
         const singleStrapBase = document.getElementById('singleStrapBase');
@@ -1415,6 +1358,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
                 const endX = 150 + currentX;
                 const endY = 170 + currentY;
 
+                // Kurva kuadratik tunggal agar tali kain melengkung lentur secara natural
                 const controlX = 150 + (currentX * 0.5) + (velX * 0.35);
                 const controlY = 90 + (currentY * 0.5) + (velY * 0.35);
 
@@ -1430,6 +1374,7 @@ Film ini bercerita tentang bagaimana beberapa dari kita seringkali terlambat mem
             }
             animatePhysicsLoop();
         }
+        // =========================================================================
 
 
         // --- THEME SWITCHER & OBSERVER ---
