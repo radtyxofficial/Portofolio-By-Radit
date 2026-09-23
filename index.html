@@ -359,14 +359,15 @@
                 </a>
             </div>
 
-            <!-- CONTAINER VIDEO DIPERBARUI MENGGUNAKAN ASPECT-VIDEO -->
-            <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-slate-300 dark:border-slate-800 shadow-inner group">
+            <!-- CONTAINER VIDEO DIPERBARUI MENGGUNAKAN TEKNIK PADDING-BOTTOM 16:9 YANG PALING KETAT UNTUK MOBILE -->
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="w-full rounded-2xl bg-black border border-slate-300 dark:border-slate-800 shadow-inner group">
                 <iframe src="https://drive.google.com/file/d/1zPrK_nu_E8fWPT8FpHaCQTvh9LJf1O4K/preview" 
-                        class="absolute inset-0 w-full h-full border-0" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                         allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
                         allowfullscreen="true" 
                         webkitallowfullscreen="true" 
-                        mozallowfullscreen="true">
+                        mozallowfullscreen="true"
+                        scrolling="no">
                 </iframe>
             </div>
             
@@ -836,19 +837,20 @@
 
             <div class="p-6 overflow-y-auto space-y-6 text-slate-700 dark:text-slate-300 text-xs sm:text-sm leading-relaxed transition-colors">
                 
-                <!-- CONTAINER VIDEO MODAL JUGA DIPERBARUI MENGGUNAKAN ASPECT-VIDEO -->
+                <!-- CONTAINER VIDEO MODAL JUGA MENGGUNAKAN PADDING-BOTTOM 16:9 YANG KETAT -->
                 <div id="modalVideoSection" class="hidden space-y-2">
                     <h4 class="font-bold text-slate-900 dark:text-white text-xs sm:text-sm flex items-center gap-2">
                         <i class="fa-solid fa-play-circle text-rose-500"></i>
                         <span>Teaser / Video Preview</span>
                     </h4>
-                    <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black border border-slate-200 dark:border-slate-800">
+                    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;" class="w-full rounded-xl bg-black border border-slate-200 dark:border-slate-800">
                         <iframe id="modalIframe" src="" 
-                                class="absolute inset-0 w-full h-full border-0" 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
                                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
                                 allowfullscreen="true" 
                                 webkitallowfullscreen="true" 
-                                mozallowfullscreen="true">
+                                mozallowfullscreen="true"
+                                scrolling="no">
                         </iframe>
                     </div>
                 </div>
