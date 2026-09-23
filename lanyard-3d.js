@@ -1,120 +1,72 @@
-/**
- * Lanyard & ID Card 3D Physics and Interaction Script with Gravity & Weight
- * Mengatur gravitasi, gaya tarik pegas (spring physics), drag & drop, serta rotasi 3D real-time.
- */
+// Pastikan script ini dijalankan setelah DOM dimuat
+const container = document.getElementById('canvas-container');
+const canvas = document.getElementById('idCardCanvas');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const lanyardMoveable = document.getElementById('lanyardMoveable');
-    const singleStrapBase = document.getElementById('singleStrapBase');
-    const singleStrapTexture = document.getElementById('singleStrapTexture');
-    const singleStrapEdge = document.getElementById('singleStrapEdge');
+// 1. Scene, Camera, & Renderer
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+camera.position.z = 5;
 
-    if (!lanyardMoveable) return;
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    let isDraggingLanyard = false;
-    let startMouseX = 0, startMouseY = 0;
-    
-    let currentX = 0, currentY = -560; 
-    let targetX = 0, targetY = 0;
-    let velX = 0, velY = 0;
-    
-    // Parameter Fisika Baru: Gravitasi & Bobot
-    const gravity = 0.35;       // Kekuatan gaya gravitasi yang menarik ke bawah
-    const springPower = 0.045;  // Kekuatan pegas pengikat atas
-    const frictionPower = 0.68; // Redaman gesekan (damping) agar pergerakan natural
+// 2. Tambahkan Pencahayaan (Lighting)
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
+scene.add(ambientLight);
 
-    // Event saat pengguna mulai menarik (drag) ID card
-    lanyardMoveable.addEventListener('pointerdown', (e) => {
-        isDraggingLanyard = true;
-        lanyardMoveable.setPointerCapture(e.pointerId);
-        
-        startMouseX = e.clientX - targetX;
-        startMouseY = e.clientY - targetY;
-        
-        lanyardMoveable.style.cursor = 'grabbing';
-        velX = 0; 
-        velY = 0;
-    });
+const pointLight = new THREE.PointLight(0xffffff, 2);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
 
-    // Event saat menggeser kursor / sentuhan
-    lanyardMoveable.addEventListener('pointermove', (e) => {
-        if (!isDraggingLanyard) return;
-        
-        let dx = e.clientX - startMouseX;
-        let dy = e.clientY - startMouseY;
-        
-        // Batas maksimal tarikan tali (max stretch)
-        const maxStretch = 400; 
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist > maxStretch) {
-            dx = (dx / dist) * maxStretch;
-            dy = (dy / dist) * maxStretch;
-        }
-        
-        targetX = dx;
-        targetY = dy;
-    });
+// 3. Buat Objek 3D ID Card (Mesh)
+const cardWidth = 1.6;
+const cardHeight = 2.4;
+const cardGeometry = new THREE.BoxGeometry(cardWidth, cardHeight, 0.02);
 
-    // Fungsi saat tarikan dilepas
-    const releaseLanyard = () => {
-        isDraggingLanyard = false;
-        targetX = 0; 
-        targetY = 0;
-        lanyardMoveable.style.cursor = 'grab';
-    };
+// Membuat tekstur atau warna tampilan kartu
+const cardMaterial = new THREE.MeshStandardMaterial({ 
+    color: 0x0f172a, 
+    roughness.value: 0.2,
+    metalness.value: 0.8
+});
 
-    lanyardMoveable.addEventListener('pointerup', releaseLanyard);
-    lanyardMoveable.addEventListener('pointercancel', releaseLanyard);
+const idCardMesh = new THREE.Mesh(cardGeometry, cardMaterial);
+scene.add(idCardMesh);
 
-    // Loop animasi fisik dengan tambahan efek gravitasi jatuh
-    function animatePhysicsLoop() {
-        if (isDraggingLanyard) {
-            currentX += (targetX - currentX) * 0.3;
-            currentY += (targetY - currentY) * 0.3;
-        } else {
-            // Kalkulasi gaya pegas menuju titik pusat (0,0)
-            let ax = (targetX - currentX) * springPower;
-            let ay = (targetY - currentY) * springPower;
-            
-            // Tambahkan komponen GAYA GRAVITASI yang menarik ke arah bawah (sumbu Y positif)
-            let gravitationalPull = gravity * 15; 
+// 4. Efek Interaksi Kursor (Mouse Move Parallax & Tilt)
+let mouseX = 0;
+let mouseY = 0;
+let targetRotationX = 0;
+let targetRotationY = 0;
 
-            velX += ax;
-            velY += ay + gravitationalPull; // Kartu akan terasa memiliki beban dan tertarik ke bawah
-            
-            velX *= frictionPower;
-            velY *= frictionPower;
-            
-            currentX += velX;
-            currentY += velY;
-        }
+window.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+});
 
-        // Kalkulasi sudut kemiringan rotasi 3D (sumbu X, Y, dan Z) berdasarkan kecepatan & posisi
-        let rotY = currentX * 0.15 + (velX * 0.05);  
-        let rotX = -currentY * 0.12 - (velY * 0.05); 
-        let rotZ = currentX * 0.06;  
-        
-        // Terapkan transformasi 3D pada elemen kartu
-        lanyardMoveable.style.transform = `translateX(-50%) translate3d(${currentX}px, ${currentY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
+// 5. Animasi Loop (Render & Physics per frame)
+function animate() {
+    requestAnimationFrame(animate);
 
-        // Pembaruan bentuk kurva SVG pada tali (lanyard strap) agar ikut melengkung dinamis
-        const endX = 150 + currentX;
-        const endY = 170 + currentY;
+    // Menghitung rotasi halus berdasarkan posisi kursor
+    targetRotationX = mouseY * 0.5;
+    targetRotationY = mouseX * 0.5;
 
-        const controlX = 150 + (currentX * 0.5) + (velX * 0.35);
-        const controlY = 90 + (currentY * 0.5) + (velY * 0.35) + (Math.abs(velY) * 0.1);
+    // Efek lerp (smooth transition) rotasi kartu
+    idCardMesh.rotation.x += (targetRotationX - idCardMesh.rotation.x) * 0.05;
+    idCardMesh.rotation.y += (targetRotationY - idCardMesh.rotation.y) * 0.05;
 
-        const singlePathData = `M 150,10 Q ${controlX},${controlY} ${endX},${endY}`;
+    // Sedikit efek mengapung (floating animation)
+    idCardMesh.position.y = Math.sin(Date.now() * 0.002) * 0.1;
 
-        if (singleStrapBase) {
-            singleStrapBase.setAttribute('d', singlePathData);
-            singleStrapTexture.setAttribute('d', singlePathData);
-            singleStrapEdge.setAttribute('d', singlePathData);
-        }
+    renderer.render(scene, camera);
+}
+animate();
 
-        requestAnimationFrame(animatePhysicsLoop);
-    }
-    
-    // Jalankan loop animasi
-    animatePhysicsLoop();
+// 6. Responsif saat ukuran layar berubah
+window.addEventListener('resize', () => {
+    camera.aspect = container.clientWidth / container.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(container.clientWidth, container.clientHeight);
 });
